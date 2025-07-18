@@ -152,34 +152,47 @@ const services = [
 ]
 
 // Service-specific animation components
-const FloatingHearts = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[...Array(8)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute text-pink-400 text-2xl"
-        initial={{ 
-          x: Math.random() * window.innerWidth, 
-          y: window.innerHeight + 100,
-          opacity: 0 
-        }}
-        animate={{ 
-          y: -100,
-          opacity: [0, 1, 0],
-          rotate: [0, 360]
-        }}
-        transition={{
-          duration: 4 + Math.random() * 2,
-          repeat: Infinity,
-          delay: i * 0.5,
-          ease: "easeInOut"
-        }}
-      >
-        ❤️
-      </motion.div>
-    ))}
-  </div>
-)
+const FloatingHearts = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  }, []);
+
+  if (dimensions.width === 0) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-pink-400 text-2xl"
+          initial={{ 
+            x: Math.random() * dimensions.width, 
+            y: dimensions.height + 100,
+            opacity: 0 
+          }}
+          animate={{ 
+            y: -100,
+            opacity: [0, 1, 0],
+            rotate: [0, 360]
+          }}
+          transition={{
+            duration: 4 + Math.random() * 2,
+            repeat: Infinity,
+            delay: i * 0.5,
+            ease: "easeInOut"
+          }}
+        >
+          ❤️
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 const SteamRising = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -209,36 +222,49 @@ const SteamRising = () => (
   </div>
 )
 
-const FallingPetals = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[...Array(12)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute text-pink-300 text-xl"
-        initial={{ 
-          x: Math.random() * window.innerWidth, 
-          y: -50,
-          opacity: 0,
-          rotate: 0
-        }}
-        animate={{ 
-          y: window.innerHeight + 50,
-          opacity: [0, 1, 0],
-          rotate: 360,
-          x: Math.random() * window.innerWidth
-        }}
-        transition={{
-          duration: 6 + Math.random() * 3,
-          repeat: Infinity,
-          delay: i * 0.4,
-          ease: "easeInOut"
-        }}
-      >
-        🌸
-      </motion.div>
-    ))}
-  </div>
-)
+const FallingPetals = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  }, []);
+
+  if (dimensions.width === 0) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(12)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-pink-300 text-xl"
+          initial={{ 
+            x: Math.random() * dimensions.width, 
+            y: -50,
+            opacity: 0,
+            rotate: 0
+          }}
+          animate={{ 
+            y: dimensions.height + 50,
+            opacity: [0, 1, 0],
+            rotate: 360,
+            x: Math.random() * dimensions.width
+          }}
+          transition={{
+            duration: 6 + Math.random() * 3,
+            repeat: Infinity,
+            delay: i * 0.4,
+            ease: "easeInOut"
+          }}
+        >
+          🌸
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 const CameraFlash = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
