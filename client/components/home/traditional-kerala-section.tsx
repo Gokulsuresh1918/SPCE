@@ -61,7 +61,7 @@ const TraditionalKeralaSection = () => {
   ]
 
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-24 md:py-32 bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -70,10 +70,10 @@ const TraditionalKeralaSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold font-serif mb-6 text-maroon-800">
+          <h2 className="text-3xl md:text-5xl font-bold font-serif mb-6 text-white">
             Celebrating Kerala's Rich Culinary Heritage
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
             From the backwaters of Alleppey to the hills of Munnar, we bring the authentic taste of Kerala 
             to your special occasions with traditional sadhya and regional specialties.
           </p>
@@ -90,14 +90,14 @@ const TraditionalKeralaSection = () => {
               className="text-center group"
             >
               <motion.div
-                className={`${highlight.color} rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 text-3xl group-hover:scale-110 transition-transform`}
+                className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 text-3xl group-hover:scale-110 transition-transform border border-white/20"
                 whileHover={{ rotate: 10 }}
                 transition={{ duration: 0.3 }}
               >
                 {highlight.icon}
               </motion.div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{highlight.title}</h3>
-              <p className="text-gray-600 text-sm">{highlight.description}</p>
+              <h3 className="text-lg font-semibold text-white mb-2">{highlight.title}</h3>
+              <p className="text-gray-200 text-sm">{highlight.description}</p>
             </motion.div>
           ))}
         </div>
@@ -111,7 +111,7 @@ const TraditionalKeralaSection = () => {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <Card3D className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" intensity={15}>
+              <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-white/20" intensity={15}>
                 <div className="aspect-[4/3] relative">
                   <Image
                     src={occasion.image}
@@ -139,14 +139,14 @@ const TraditionalKeralaSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-gradient-to-br from-maroon-50 to-gold-50 rounded-2xl p-8 md:p-12 mb-16"
+          className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-2xl p-8 md:p-12 mb-16 border border-white/20"
         >
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold font-serif mb-6 text-maroon-800">
+              <h3 className="text-2xl md:text-3xl font-bold font-serif mb-6 text-white">
                 The Complete Kerala Experience
               </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed">
+              <p className="text-gray-200 mb-6 leading-relaxed">
                 We don't just serve food; we create an authentic Kerala experience that includes traditional 
                 music, cultural elements, and the warm hospitality that Kerala is famous for.
               </p>
@@ -163,7 +163,7 @@ const TraditionalKeralaSection = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    className="flex items-center text-gray-700"
+                    className="flex items-center text-gray-200"
                   >
                     <Star className="h-5 w-5 text-gold-500 mr-3 flex-shrink-0" />
                     {item}
@@ -191,10 +191,10 @@ const TraditionalKeralaSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold font-serif mb-6 text-maroon-800">
+          <h3 className="text-2xl md:text-3xl font-bold font-serif mb-6 text-white">
             Serving Across Kerala
           </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-200 mb-8 max-w-2xl mx-auto">
             We provide our authentic Kerala sadhya services across major cities and towns in Kerala, 
             bringing the traditional taste to your doorstep.
           </p>
@@ -205,11 +205,11 @@ const TraditionalKeralaSection = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow"
+                className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow border border-white/20"
               >
                 <div className="flex items-center justify-center">
                   <MapPin className="h-4 w-4 text-gold-500 mr-2" />
-                  <span className="text-sm font-medium text-gray-700">{city}</span>
+                  <span className="text-sm font-medium text-white">{city}</span>
                 </div>
               </motion.div>
             ))}
@@ -221,7 +221,7 @@ const TraditionalKeralaSection = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-maroon-500 text-maroon-500 hover:bg-maroon-50">
+            <Button asChild size="lg" variant="outline" className="border-gold-400 text-gold-400 hover:bg-gold-400/20">
               <Link href="/locations">View All Locations</Link>
             </Button>
           </div>

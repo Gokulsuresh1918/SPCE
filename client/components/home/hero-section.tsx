@@ -196,143 +196,90 @@ const HeroSection = () => {
                 </DialogDescription>
               </DialogHeader>
               
-              <motion.form 
-                onSubmit={handleEnquirySubmit} 
-                className="space-y-6 mt-6 relative z-10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
+              <form onSubmit={handleEnquirySubmit} className="space-y-4 mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <motion.div
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                  >
+                  <div>
                     <Label htmlFor="name" className="text-sm font-medium text-gray-700">
                       Your Name
                     </Label>
-                    <motion.div
-                      whileFocus={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="Enter your name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="mt-1 border-gray-300 focus:border-gold-500 focus:ring-gold-500 transition-all duration-300"
-                      />
-                    </motion.div>
-                  </motion.div>
-                  <motion.div
-                    initial={{ x: 20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                  >
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Enter your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
                     <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
                       Phone Number
                     </Label>
-                    <motion.div
-                      whileFocus={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="Enter your phone number"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        className="mt-1 border-gray-300 focus:border-gold-500 focus:ring-gold-500 transition-all duration-300"
-                      />
-                    </motion.div>
-                  </motion.div>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
                 </div>
                 
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(212, 175, 55, 0.3)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
+                <Button 
+                  type="submit" 
+                  className="w-full bg-gold-500 hover:bg-gold-600 text-white"
                 >
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white py-3 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                  >
-                    Request Callback
-                  </Button>
-                </motion.div>
-              </motion.form>
+                  Request Callback
+                </Button>
+              </form>
 
-              <motion.div 
-                className="mt-8 pt-6 border-t border-gray-200 relative z-10"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                <motion.h3 
-                  className="text-lg font-serif text-center mb-4 text-gray-800"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                >
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <h3 className="text-lg font-serif text-center mb-4 text-gray-800">
                   Connect With Us
-                </motion.h3>
+                </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={handleWhatsAppClick}
-                    className="flex flex-col items-center p-4 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition-all duration-300 group"
+                    className="flex flex-col items-center p-4 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200"
                   >
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-green-600 transition-colors">
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mb-2">
                       <MessageCircle className="h-6 w-6 text-white" />
                     </div>
                     <span className="text-sm font-medium text-green-700">WhatsApp</span>
-                  </motion.button>
+                  </button>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={handlePhoneClick}
-                    className="flex flex-col items-center p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 transition-all duration-300 group"
+                    className="flex flex-col items-center p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200"
                   >
-                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-blue-600 transition-colors">
+                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-2">
                       <Phone className="h-6 w-6 text-white" />
                     </div>
                     <span className="text-sm font-medium text-blue-700">Call</span>
-                  </motion.button>
+                  </button>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={handleEmailClick}
-                    className="flex flex-col items-center p-4 bg-red-50 hover:bg-red-100 rounded-xl border border-red-200 transition-all duration-300 group"
+                    className="flex flex-col items-center p-4 bg-red-50 hover:bg-red-100 rounded-xl border border-red-200"
                   >
-                    <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-red-600 transition-colors">
+                    <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mb-2">
                       <Mail className="h-6 w-6 text-white" />
                     </div>
                     <span className="text-sm font-medium text-red-700">Email</span>
-                  </motion.button>
+                  </button>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={handleLocationClick}
-                    className="flex flex-col items-center p-4 bg-purple-50 hover:bg-purple-100 rounded-xl border border-purple-200 transition-all duration-300 group"
+                    className="flex flex-col items-center p-4 bg-purple-50 hover:bg-purple-100 rounded-xl border border-purple-200"
                   >
-                    <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-colors">
+                    <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mb-2">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <span className="text-sm font-medium text-purple-700">Location</span>
-                  </motion.button>
+                  </button>
                 </div>
-              </motion.div>
+              </div>
             </DialogContent>
           </Dialog>
           

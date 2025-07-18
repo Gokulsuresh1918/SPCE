@@ -40,7 +40,7 @@ const AnimatedStats = () => {
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-br from-ivory-50 to-white">
+    <section className="py-24 bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -49,10 +49,10 @@ const AnimatedStats = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">
             Our Kerala Sadhya Legacy
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-200 text-lg max-w-2xl mx-auto">
             Three decades of serving authentic Kerala sadhya and preserving traditional culinary heritage.
           </p>
         </motion.div>
@@ -75,13 +75,13 @@ const AnimatedStats = () => {
               }}
             >
               <motion.div
-                className={`${stat.bgColor} rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
+                className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/20"
                 whileHover={{
                   rotateY: 180,
                   transition: { duration: 0.6 }
                 }}
               >
-                <stat.icon className={`h-10 w-10 ${stat.color}`} />
+                <stat.icon className="h-10 w-10 text-gold-400" />
               </motion.div>
               
               <motion.div
@@ -91,7 +91,7 @@ const AnimatedStats = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 + 0.4 }}
               >
                 <motion.div
-                  className="text-3xl md:text-4xl font-bold text-gray-900 mb-1"
+                  className="text-3xl md:text-4xl font-bold text-white mb-1"
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ 
@@ -103,7 +103,7 @@ const AnimatedStats = () => {
                 >
                   {stat.number}
                 </motion.div>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
+                <p className="text-gray-200 font-medium">{stat.label}</p>
               </motion.div>
             </motion.div>
           ))}

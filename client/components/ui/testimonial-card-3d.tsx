@@ -154,7 +154,7 @@ const TestimonialCard3D = ({ quote, author, role, image, rating = 5 }: Testimoni
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
-            <Image src={image} alt={author} fill className="object-cover" />
+            <Image src={image} alt={author} fill className="object-cover object-center" />
           </motion.div>
           <div>
             <motion.h4
