@@ -53,7 +53,7 @@ const HeroSection = () => {
               alt="Luxury Wedding Setting" 
               fill 
               priority 
-              className="hero-image w-full h-full"
+              className="hero-image w-full h-full object-cover object-center"
               sizes="100vw"
               quality={95}
               placeholder="blur"

@@ -75,7 +75,7 @@ export default function Home() {
 
               <Card3D className="relative">
                 <div className="aspect-[4/5] relative rounded-lg overflow-hidden shadow-xl">
-                  <Image src="/placeholder-729ns.png" alt="Wedding Planning" fill className="object-cover" />
+                  <Image src="/placeholder-729ns.png" alt="Wedding Planning" fill className="object-cover object-center" />
                 </div>
                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg max-w-xs">
                   <div className="flex items-center mb-2">
@@ -193,7 +193,7 @@ export default function Home() {
                     src={work.image || "/placeholder.svg"}
                     alt={work.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80" />
                 </div>
