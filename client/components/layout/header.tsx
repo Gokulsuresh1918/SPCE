@@ -130,7 +130,7 @@ export default function Header() {
               </DialogHeader>
               
               <form onSubmit={handleEnquirySubmit} className="space-y-4 mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="gr oid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name" className="text-sm font-medium text-gray-700">
                       Your Name
