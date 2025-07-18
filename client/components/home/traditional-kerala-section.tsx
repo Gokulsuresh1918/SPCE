@@ -43,20 +43,20 @@ const TraditionalKeralaSection = () => {
     {
       title: "Weddings",
       description: "Traditional wedding sadhya with all rituals",
-      image: "/placeholder.svg?height=400&width=400&query=kerala wedding sadhya",
-      guests: "100-500 guests"
+      image: "/weddign.jpeg",
+      details: "Complete wedding catering with traditional setup"
     },
     {
       title: "Festivals",
       description: "Onam, Vishu, and other Kerala festivals",
-      image: "/placeholder.svg?height=400&width=400&query=kerala festival sadhya",
-      guests: "50-200 guests"
+      image: "/temple.jpeg",
+      details: "Authentic festival sadhya experience"
     },
     {
       title: "Corporate Events",
       description: "Traditional Kerala cuisine for corporate functions",
-      image: "/placeholder.svg?height=400&width=400&query=corporate kerala food",
-      guests: "20-100 guests"
+      image: "/corporate.jpeg",
+      details: "Professional catering for business events"
     }
   ]
 
@@ -124,8 +124,8 @@ const TraditionalKeralaSection = () => {
                     <h3 className="text-xl font-bold text-white mb-1">{occasion.title}</h3>
                     <p className="text-white/90 text-sm mb-2">{occasion.description}</p>
                     <div className="flex items-center text-white/80 text-sm">
-                      <Users className="h-4 w-4 mr-1" />
-                      {occasion.guests}
+                      <Star className="h-4 w-4 mr-1" />
+                      {occasion.details}
                     </div>
                   </div>
                 </div>
@@ -133,56 +133,6 @@ const TraditionalKeralaSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Traditional Experience Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-2xl p-8 md:p-12 mb-16 border border-white/20"
-        >
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold font-serif mb-6 text-white">
-                The Complete Kerala Experience
-              </h3>
-              <p className="text-gray-200 mb-6 leading-relaxed">
-                We don't just serve food; we create an authentic Kerala experience that includes traditional 
-                music, cultural elements, and the warm hospitality that Kerala is famous for.
-              </p>
-              <div className="space-y-4">
-                {[
-                  "Traditional Kerala music and ambiance",
-                  "Authentic serving style and presentation",
-                  "Cultural elements and decorations",
-                  "Expert staff in traditional attire",
-                  "Complete setup and cleanup service"
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    className="flex items-center text-gray-200"
-                  >
-                    <Star className="h-5 w-5 text-gold-500 mr-3 flex-shrink-0" />
-                    {item}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <Card3D className="aspect-square rounded-xl overflow-hidden" intensity={20}>
-                <Image
-                  src="/placeholder.svg?height=600&width=600&query=kerala traditional dining experience"
-                  alt="Traditional Kerala Experience"
-                  fill
-                  className="object-cover"
-                />
-              </Card3D>
-            </div>
-          </div>
-        </motion.div>
 
         {/* Service Areas */}
         <motion.div
@@ -192,28 +142,13 @@ const TraditionalKeralaSection = () => {
           className="text-center"
         >
           <h3 className="text-2xl md:text-3xl font-bold font-serif mb-6 text-white">
-            Serving Across Kerala
+            Serving All Over Kerala
           </h3>
           <p className="text-gray-200 mb-8 max-w-2xl mx-auto">
-            We provide our authentic Kerala sadhya services across major cities and towns in Kerala, 
-            bringing the traditional taste to your doorstep.
+            We provide our authentic Kerala sadhya services throughout the entire state of Kerala, 
+            from the northern districts to the southernmost regions, bringing the traditional taste to your doorstep.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kottayam", "Alappuzha", "Palakkad", "Kannur"].map((city, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow border border-white/20"
-              >
-                <div className="flex items-center justify-center">
-                  <MapPin className="h-4 w-4 text-gold-500 mr-2" />
-                  <span className="text-sm font-medium text-white">{city}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+         
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="bg-gold-500 hover:bg-gold-600 text-white">
               <Link href="/contact" className="flex items-center">
@@ -222,7 +157,7 @@ const TraditionalKeralaSection = () => {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-gold-400 text-gold-400 hover:bg-gold-400/20">
-              <Link href="/locations">View All Locations</Link>
+              <Link href="/service-areas">Service Areas</Link>
             </Button>
           </div>
         </motion.div>

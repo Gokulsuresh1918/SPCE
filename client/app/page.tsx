@@ -104,63 +104,7 @@ export default function Home() {
       {/* Animated Stats Section */}
       <AnimatedStats />
 
-      {/* Services Highlight */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                      <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">Our Kerala Culinary Services</h2>
-              <p className="text-gray-200 text-lg">
-                From traditional sadhya to modern Kerala cuisine, we bring authentic flavors to every occasion.
-              </p>
-            </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Calendar,
-                title: "Traditional Sadhya",
-                description:
-                  "Complete Kerala sadhya with 25+ dishes served on fresh banana leaves with authentic recipes.",
-                link: "/services#sadhya",
-              },
-              {
-                icon: Sparkles,
-                title: "Kerala Specialties",
-                description: "Regional Kerala dishes including seafood, vegetarian, and traditional desserts.",
-                link: "/services#kerala-specialties",
-              },
-              {
-                icon: Users,
-                title: "Catering Services",
-                description: "Full-service catering for weddings, festivals, and corporate events across Kerala.",
-                link: "/services#catering",
-              },
-            ].map((service, index) => (
-              <Card3D key={index} className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 backdrop-blur-sm rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow border border-white/20" intensity={15}>
-                <div className="bg-gold-500/20 rounded-full w-14 h-14 flex items-center justify-center mb-6">
-                  <service.icon className="h-7 w-7 text-gold-400" />
-                </div>
-                <h3 className="text-xl font-serif font-semibold mb-3 text-white">{service.title}</h3>
-                <p className="text-gray-200 mb-6">{service.description}</p>
-                <Link
-                  href={service.link}
-                  className="text-gold-400 font-medium hover:text-gold-300 inline-flex items-center group"
-                >
-                  Learn more
-                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Card3D>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button asChild variant="outline" className="border-gold-400 text-gold-400 hover:bg-gold-400/20 transition-colors">
-              <Link href="/services">View All Kerala Services</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
+     
       {/* Featured Work */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

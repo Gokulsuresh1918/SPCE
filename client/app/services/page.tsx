@@ -1,8 +1,15 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Check } from "lucide-react"
+import { Check, ArrowRight, Star, Users, Calendar, Award } from "lucide-react"
+import Card3D from "@/components/ui/3d-card"
+import FloatingElements from "@/components/ui/floating-elements"
 
 const services = [
   {
@@ -21,6 +28,8 @@ const services = [
       "Budget management and tracking",
     ],
     pricing: "Starting from ₹3,50,000",
+    icon: "💒",
+    color: "from-pink-500 to-rose-500"
   },
   {
     id: "catering",
@@ -38,6 +47,8 @@ const services = [
       "Special dietary accommodations",
     ],
     pricing: "Starting from ₹1,200 per plate",
+    icon: "🍽️",
+    color: "from-orange-500 to-red-500"
   },
   {
     id: "decoration",
@@ -55,6 +66,8 @@ const services = [
       "Prop sourcing and custom fabrication",
     ],
     pricing: "Starting from ₹1,50,000",
+    icon: "🌸",
+    color: "from-purple-500 to-pink-500"
   },
   {
     id: "photography",
@@ -71,6 +84,8 @@ const services = [
       "Premium album design and production",
     ],
     pricing: "Starting from ₹1,25,000",
+    icon: "📸",
+    color: "from-blue-500 to-indigo-500"
   },
   {
     id: "invitation",
@@ -88,6 +103,8 @@ const services = [
       "Budget-friendly options for all scales",
     ],
     pricing: "Starting from ₹25,000",
+    icon: "🎁",
+    color: "from-green-500 to-emerald-500"
   },
   {
     id: "corporate",
@@ -104,6 +121,8 @@ const services = [
       "VIP management and protocol services",
     ],
     pricing: "Starting from ₹75,000",
+    icon: "🏢",
+    color: "from-gray-500 to-slate-500"
   },
   {
     id: "destination",
@@ -120,107 +139,237 @@ const services = [
       "Multi-day event planning and coordination",
     ],
     pricing: "Starting from ₹7,50,000",
+    icon: "🏖️",
+    color: "from-cyan-500 to-blue-500"
   },
 ]
 
+const stats = [
+  { icon: Users, value: "500+", label: "Happy Clients" },
+  { icon: Calendar, value: "1000+", label: "Events Managed" },
+  { icon: Award, value: "30+", label: "Years Experience" },
+  { icon: Star, value: "5.0", label: "Average Rating" }
+]
+
 export default function ServicesPage() {
+  const [activeService, setActiveService] = useState("wedding")
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+
   return (
-    <div className="pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700">
+      {/* Floating Elements */}
+      <FloatingElements />
+      
       {/* Hero Section */}
-      <section className="relative">
-        <div className="h-96 relative">
-          <Image
-            src="/placeholder.svg?height=800&width=1920&query=luxury event service collage with wedding, catering, and decoration"
-            alt="Our Services"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div className="text-center max-w-3xl px-4">
-              <h1 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4">Our Services</h1>
-              <p className="text-xl text-gray-100">Comprehensive event management solutions for every celebration</p>
-            </div>
-          </div>
+      <section className="relative pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6 text-white">
+              Our Services
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
+              Comprehensive event management solutions for every celebration. From intimate gatherings to grand celebrations, 
+              our team brings expertise, creativity, and flawless execution to every event.
+            </p>
+          </motion.div>
+
+          {/* Stats Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                className="text-center"
+              >
+                <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 border border-white/20" intensity={15}>
+                  <CardContent className="p-6">
+                    <div className="flex justify-center mb-3">
+                      <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center">
+                        <stat.icon className="h-6 w-6 text-white" />
+                      </div>
+                    </div>
+                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-gray-300 text-sm">{stat.label}</div>
+                  </CardContent>
+                </Card3D>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-16 md:py-24">
+      {/* Services Navigation */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6">Comprehensive Event Solutions</h2>
-            <p className="text-gray-600">
-              With three decades of experience, we offer end-to-end event management services tailored to your unique
-              needs. From intimate gatherings to grand celebrations, our team brings expertise, creativity, and flawless
-              execution to every event.
-            </p>
-          </div>
-
-          <div className="space-y-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-4 mb-16"
+          >
             {services.map((service, index) => (
-              <div
+              <motion.button
                 key={service.id}
-                id={service.id}
-                className={`scroll-mt-24 grid md:grid-cols-2 gap-8 items-center ${
-                  index % 2 === 1 ? "md:grid-flow-dense" : ""
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                onClick={() => setActiveService(service.id)}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeService === service.id
+                    ? "bg-gold-500 text-white shadow-lg scale-105"
+                    : "bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white"
                 }`}
               >
-                <div className={index % 2 === 1 ? "md:col-start-2" : ""}>
-                  <h2 className="text-3xl font-serif font-bold mb-4">{service.title}</h2>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                <span className="mr-2">{service.icon}</span>
+                {service.title}
+              </motion.button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Details */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+              className={`mb-24 last:mb-0 ${
+                activeService === service.id ? "block" : "hidden"
+              }`}
+            >
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Content */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.7 + index * 0.1 }}
+                >
+                  <div className="flex items-center mb-6">
+                    <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-full flex items-center justify-center text-2xl mr-4`}>
+                      {service.icon}
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white">{service.title}</h2>
+                  </div>
+                  
+                  <p className="text-gray-300 text-lg mb-8 leading-relaxed">{service.description}</p>
 
                   <div className="mb-8">
-                    <h3 className="text-lg font-semibold mb-4">What's Included:</h3>
-                    <ul className="space-y-3">
+                    <h3 className="text-xl font-semibold text-white mb-6">What's Included:</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <Check className="mr-2 h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </li>
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : {}}
+                          transition={{ duration: 0.6, delay: 0.8 + index * 0.1 + i * 0.05 }}
+                          className="flex items-start"
+                        >
+                          <Check className="mr-3 h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
+                          <span className="text-gray-300">{feature}</span>
+                        </motion.div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="bg-gold-50 px-4 py-3 rounded-md inline-flex items-center">
-                      <span className="text-gray-900 font-semibold">{service.pricing}</span>
-                    </div>
-                    <Button asChild>
-                      <Link href="/contact">Get a Quote</Link>
+                    <Card3D className="bg-gradient-to-br from-gold-500/20 to-gold-600/20 border border-gold-500/30" intensity={10}>
+                      <CardContent className="p-4">
+                        <span className="text-gold-400 font-semibold text-lg">{service.pricing}</span>
+                      </CardContent>
+                    </Card3D>
+                    <Button asChild size="lg" className="bg-gold-500 hover:bg-gold-600 text-white">
+                      <Link href="/contact" className="flex items-center">
+                        Get a Quote
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   </div>
-                </div>
+                </motion.div>
 
-                <div
-                  className={`relative h-80 rounded-lg overflow-hidden shadow-xl ${
-                    index % 2 === 1 ? "md:col-start-1" : ""
-                  }`}
+                {/* Image */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.8 + index * 0.1 }}
+                  className="relative"
                 >
-                  <Image src={service.image || "/placeholder.svg"} alt={service.title} fill className="object-cover" />
-                </div>
+                  <Card3D className="overflow-hidden border border-white/20" intensity={20}>
+                    <div className="aspect-[4/3] relative">
+                      <Image 
+                        src={service.image} 
+                        alt={service.title} 
+                        fill 
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </div>
+                  </Card3D>
+                </motion.div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* Packages CTA */}
-      <section className="bg-gold-50 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6">Looking for Bundled Services?</h2>
-          <p className="text-xl text-gray-700 mb-10">
-            Explore our exclusive event packages designed to provide comprehensive solutions at competitive prices.
-          </p>
-          <Button asChild size="lg">
-            <Link href="/packages">View Packages</Link>
-          </Button>
+      <section className="py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="text-center"
+          >
+            <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 border border-white/20" intensity={15}>
+              <CardContent className="p-12">
+                <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">Looking for Bundled Services?</h2>
+                <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+                  Explore our exclusive event packages designed to provide comprehensive solutions at competitive prices.
+                </p>
+                <Button asChild size="lg" className="bg-gold-500 hover:bg-gold-600 text-white">
+                  <Link href="/packages" className="flex items-center">
+                    View Packages
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card3D>
+          </motion.div>
         </div>
       </section>
 
       {/* Testimonials */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-heading">Client Testimonials</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1.0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">Client Testimonials</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Don't just take our word for it. Here's what our valued clients have to say about their experience.
+            </p>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -229,55 +378,89 @@ export default function ServicesPage() {
                   "The catering service was exceptional. Our guests couldn't stop talking about the food quality and presentation.",
                 author: "Rajesh & Priya",
                 event: "Wedding in Kochi",
+                rating: 5
               },
               {
                 quote:
                   "From concept to execution, the team's attention to detail in the décor and overall event management was outstanding.",
                 author: "Infosys Ltd.",
                 event: "Annual Corporate Gala",
+                rating: 5
               },
               {
                 quote:
                   "The destination wedding of our dreams! Every detail was handled perfectly, allowing us to simply enjoy our special day.",
                 author: "Vikram & Meera",
                 event: "Beach Wedding in Goa",
+                rating: 5
               },
             ].map((testimonial, index) => (
-              <Card key={index} className="border-none shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="mb-4 text-gold-300">
-                    <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-600 italic mb-6">{testimonial.quote}</p>
-                  <div>
-                    <p className="font-semibold">{testimonial.author}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.event}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.1 + index * 0.1 }}
+              >
+                <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 border border-white/20" intensity={10}>
+                  <CardContent className="p-8">
+                    <div className="mb-4 text-gold-400">
+                      <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-300 italic mb-6 leading-relaxed">{testimonial.quote}</p>
+                    <div className="flex items-center space-x-1 mb-4">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-gold-500 text-gold-500" />
+                      ))}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white">{testimonial.author}</p>
+                      <p className="text-gray-400 text-sm">{testimonial.event}</p>
+                    </div>
+                  </CardContent>
+                </Card3D>
+              </motion.div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Button asChild variant="outline">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="text-center mt-12"
+          >
+            <Button asChild variant="outline" className="border-gold-400 text-gold-400 hover:bg-gold-400/20">
               <Link href="/testimonials">View All Testimonials</Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact CTA */}
-      <section className="bg-maroon-500 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-6">Ready to Create Memories?</h2>
-          <p className="text-xl text-gray-100 mb-10">
-            Contact us today to discuss how we can bring your vision to life.
-          </p>
-          <Button asChild size="lg" className="bg-gold-500 hover:bg-gold-600 text-white">
-            <Link href="/contact">Get in Touch</Link>
-          </Button>
+      <section className="py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1.5 }}
+            className="text-center"
+          >
+            <Card3D className="bg-gradient-to-br from-gold-500/20 to-gold-600/20 border border-gold-500/30" intensity={15}>
+              <CardContent className="p-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-6">Ready to Create Memories?</h2>
+                <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+                  Contact us today to discuss how we can bring your vision to life.
+                </p>
+                <Button asChild size="lg" className="bg-gold-500 hover:bg-gold-600 text-white">
+                  <Link href="/contact" className="flex items-center">
+                    Get in Touch
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card3D>
+          </motion.div>
         </div>
       </section>
     </div>

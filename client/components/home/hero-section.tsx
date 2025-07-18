@@ -67,7 +67,14 @@ const HeroSection = () => {
   }
 
   const handlePhoneClick = () => {
-    window.open('tel:+917902371571', '_blank')
+    // Show all phone numbers in a more user-friendly way
+    const phoneNumbers = [
+      '+91 7902371571',
+      '+91 9746235003', 
+      '+91 9567431555'
+    ]
+    const phoneList = phoneNumbers.join('\n')
+    alert(`Please call any of our numbers:\n\n${phoneList}`)
   }
 
   return (
@@ -238,6 +245,25 @@ const HeroSection = () => {
                 <h3 className="text-lg font-serif text-center mb-4 text-gray-800">
                   Connect With Us
                 </h3>
+                
+                {/* Contact Information */}
+                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center">
+                      <Phone className="h-4 w-4 text-gold-500 mr-2" />
+                      <span className="text-gray-700">+91 7902371571, +91 9746235003, +91 9567431555</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Mail className="h-4 w-4 text-gold-500 mr-2" />
+                      <span className="text-gray-700">info@sreepadmanabha.com</span>
+                    </div>
+                    <div className="flex items-start">
+                      <MapPin className="h-4 w-4 text-gold-500 mr-2 mt-0.5" />
+                      <span className="text-gray-700">Shantharaghavam punayalkonam perumkadavilla p o thiruvananthapuram kerala 695124</span>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <button
                     onClick={handleWhatsAppClick}

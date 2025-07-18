@@ -137,7 +137,7 @@ const AnimatedCTA = () => {
               asChild
               size="lg"
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white/10 min-w-[200px] h-14 text-lg group"
+              className="border-2 border-white text-black hover:bg-white/10 min-w-[200px] h-14 text-lg group"
             >
               <Link href="/sadhya-menu" className="flex items-center">
                 View Sadhya Menu

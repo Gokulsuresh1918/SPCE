@@ -120,8 +120,9 @@ const Footer = () => {
               <li className="flex items-start">
                 <PhoneCall className="h-5 w-5 text-gold-500 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">+91 98765 43210</p>
-                  <p className="text-gray-300">+91 98765 12345</p>
+                  <p className="text-gray-300">7902371571</p>
+                  <p className="text-gray-300">9746235003</p>
+                  <p className="text-gray-300">9567431555</p>
                 </div>
               </li>
               <li className="flex items-start">
@@ -130,13 +131,12 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-gold-500 mr-3 mt-1 flex-shrink-0" />
-                <p className="text-gray-300">123 Temple Road, Trivandrum, Kerala, India - 695001</p>
+                <p className="text-gray-300">Shantharaghavam punayalkonam perumkadavilla p o thiruvananthapuram kerala 695124</p>
               </li>
               <li className="flex items-start">
                 <Clock className="h-5 w-5 text-gold-500 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">Monday - Saturday: 9am - 7pm</p>
-                  <p className="text-gray-300">Sunday: 10am - 2pm</p>
+                  <p className="text-gray-300">24/7</p>
                 </div>
               </li>
             </ul>

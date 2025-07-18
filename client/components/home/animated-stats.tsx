@@ -18,7 +18,7 @@ const AnimatedStats = () => {
     },
     {
       icon: Users,
-      number: "50K+",
+      number: "1 Cr +",
       label: "Happy Guests",
       color: "text-gold-500",
       bgColor: "bg-gold-50",
