@@ -5,13 +5,19 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Phone, Mail, MapPin, MessageCircle, ExternalLink } from "lucide-react"
 import FloatingElements from "@/components/ui/floating-elements"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [imageError, setImageError] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [name, setName] = useState("")
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true)
@@ -31,6 +37,37 @@ const HeroSection = () => {
 
   const handleImageError = () => {
     setImageError(true)
+  }
+
+  const handleEnquirySubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Here you can add logic to handle the enquiry
+    console.log("Enquiry from:", name, "Phone:", phoneNumber)
+    setPhoneNumber("")
+    setName("")
+    // You can add a toast notification here
+  }
+
+  const handleWhatsAppClick = () => {
+    const message = `Hi! I'm interested in your event management services. Name: ${name || 'Not provided'}, Phone: ${phoneNumber || 'Not provided'}`
+    const whatsappUrl = `https://wa.me/917902371571?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
+  }
+
+  const handleEmailClick = () => {
+    const subject = "Event Management Enquiry"
+    const body = `Hi,\n\nI'm interested in your event management services.\n\nName: ${name || 'Not provided'}\nPhone: ${phoneNumber || 'Not provided'}\n\nPlease contact me back.\n\nBest regards`
+    const mailtoUrl = `mailto:info@sreepadmanabha.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.open(mailtoUrl, '_blank')
+  }
+
+  const handleLocationClick = () => {
+    const locationUrl = "https://maps.app.goo.gl/hQELBm2iaaYCmUGBA"
+    window.open(locationUrl, '_blank')
+  }
+
+  const handlePhoneClick = () => {
+    window.open('tel:+917902371571', '_blank')
   }
 
   return (
@@ -101,7 +138,7 @@ const HeroSection = () => {
               ease: "easeInOut",
             }}
           >
-            Authentic Kerala Sadhya Experience Since 1993
+            Complete Event Management & Kerala Sadhya Experts Since 1993
           </motion.h2>
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-white font-serif mb-6 leading-tight"
@@ -109,7 +146,7 @@ const HeroSection = () => {
               transformStyle: "preserve-3d",
             }}
           >
-            Experience the <motion.span 
+            We Handle <motion.span 
               className="text-gold-400"
               animate={{
                 scale: [1, 1.05, 1],
@@ -124,11 +161,11 @@ const HeroSection = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-            >Traditional Sadhya</motion.span> Feast
+            >Everything</motion.span> For You
           </motion.h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Served on fresh banana leaves with authentic Kerala flavors, our traditional sadhya brings the essence of 
-            Kerala's rich culinary heritage to your special occasions.
+            From traditional Kerala Sadhya to complete event management - weddings, festivals, corporate events, and celebrations. 
+             Let us make your special moments unforgettable.
           </p>
         </motion.div>
 
@@ -138,17 +175,175 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-10"
         >
-          <Button asChild size="lg" className="bg-gold-500 hover:bg-gold-600 text-white min-w-[200px] h-14 text-lg">
-            <Link href="/book-sadhya">Book Your Sadhya</Link>
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white min-w-[200px] h-14 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() => console.log("Button clicked!")}
+              >
+                Enquiry Request
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-lg bg-white border shadow-2xl">
+
+              <DialogHeader className="text-center">
+                <DialogTitle className="text-2xl font-serif">
+                  Get In Touch
+                </DialogTitle>
+                <DialogDescription className="text-gray-600 mt-2">
+                  We'd love to hear from you!
+                </DialogDescription>
+              </DialogHeader>
+              
+              <motion.form 
+                onSubmit={handleEnquirySubmit} 
+                className="space-y-6 mt-6 relative z-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                      Your Name
+                    </Label>
+                    <motion.div
+                      whileFocus={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Input
+                        id="name"
+                        type="text"
+                        placeholder="Enter your name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="mt-1 border-gray-300 focus:border-gold-500 focus:ring-gold-500 transition-all duration-300"
+                      />
+                    </motion.div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                      Phone Number
+                    </Label>
+                    <motion.div
+                      whileFocus={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className="mt-1 border-gray-300 focus:border-gold-500 focus:ring-gold-500 transition-all duration-300"
+                      />
+                    </motion.div>
+                  </motion.div>
+                </div>
+                
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: "0 20px 40px rgba(212, 175, 55, 0.3)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white py-3 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    Request Callback
+                  </Button>
+                </motion.div>
+              </motion.form>
+
+              <motion.div 
+                className="mt-8 pt-6 border-t border-gray-200 relative z-10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <motion.h3 
+                  className="text-lg font-serif text-center mb-4 text-gray-800"
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  Connect With Us
+                </motion.h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleWhatsAppClick}
+                    className="flex flex-col items-center p-4 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition-all duration-300 group"
+                  >
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-green-600 transition-colors">
+                      <MessageCircle className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-green-700">WhatsApp</span>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handlePhoneClick}
+                    className="flex flex-col items-center p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 transition-all duration-300 group"
+                  >
+                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-blue-600 transition-colors">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-blue-700">Call</span>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleEmailClick}
+                    className="flex flex-col items-center p-4 bg-red-50 hover:bg-red-100 rounded-xl border border-red-200 transition-all duration-300 group"
+                  >
+                    <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-red-600 transition-colors">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-red-700">Email</span>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleLocationClick}
+                    className="flex flex-col items-center p-4 bg-purple-50 hover:bg-purple-100 rounded-xl border border-purple-200 transition-all duration-300 group"
+                  >
+                    <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-colors">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-purple-700">Location</span>
+                  </motion.button>
+                </div>
+              </motion.div>
+            </DialogContent>
+          </Dialog>
+          
           <Button
             asChild
             size="lg"
             variant="outline"
             className="border-2 border-white text-white hover:bg-white/10 min-w-[200px] h-14 text-lg group"
           >
-            <Link href="/sadhya-menu" className="flex items-center">
-              View Sadhya Menu
+            <Link href="/services" className="flex items-center text-black">
+              View Our Services
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
