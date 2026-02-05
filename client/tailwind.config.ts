@@ -121,6 +121,14 @@ const config: Config = {
           "0%": { transform: "scale(0.95)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "1" },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "-1000px 0" },
+          "100%": { backgroundPosition: "1000px 0" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -128,6 +136,8 @@ const config: Config = {
         "fade-in": "fadeIn 1s ease-out forwards",
         "slide-up": "slideUp 0.7s ease-out forwards",
         "zoom-in": "zoomIn 0.6s ease-out forwards",
+        "shimmer": "shimmer 2s linear infinite",
+        "float": "float 6s ease-in-out infinite",
       },
     },
   },

@@ -27,7 +27,7 @@ const WhatsAppButton = () => {
     >
       <Button asChild size="icon" className="rounded-full h-14 w-14 bg-green-500 hover:bg-green-600 shadow-lg">
         <Link
-          href="https://wa.me/919876543210?text=I'm%20interested%20in%20your%20event%20management%20services"
+          href="https://wa.me/917902371571?text=I'm%20interested%20in%20your%20event%20management%20services"
           target="_blank"
           rel="noopener noreferrer"
         >

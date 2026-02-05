@@ -23,6 +23,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState("")
   const [name, setName] = useState("")
+  const [comingSoonOpen, setComingSoonOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +40,21 @@ export default function Header() {
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Enquiry from:", name, "Phone:", phoneNumber)
+    
+    // Validate that name and phone number are provided
+    if (!name || !phoneNumber) {
+      alert("Please enter both your name and phone number")
+      return
+    }
+    
+    // Create WhatsApp message
+    const message = `Hello! Please call this person:\n\nName: ${name}\nPhone: ${phoneNumber}\n\nThey requested a callback for event management services.`
+    const whatsappUrl = `https://wa.me/917902371571?text=${encodeURIComponent(message)}`
+    
+    // Open WhatsApp with the message
+    window.open(whatsappUrl, '_blank')
+    
+    // Reset form
     setPhoneNumber("")
     setName("")
   }
@@ -72,6 +87,17 @@ export default function Header() {
     alert(`Please call any of our numbers:\n\n${phoneList}`)
   }
 
+  const handleNavigationClick = (e: React.MouseEvent, href: string, name: string) => {
+    // Only allow Home and Contact to navigate
+    if (name === "Home" || name === "Contact") {
+      return // Allow default navigation
+    }
+    
+    // Prevent navigation for other links
+    e.preventDefault()
+    setComingSoonOpen(true)
+  }
+
   return (
     <header
       className={cn(
@@ -99,18 +125,32 @@ export default function Header() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-gold-500",
-                isScrolled ? "text-white" : "text-white",
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isClickable = item.name === "Home" || item.name === "Contact"
+            return isClickable ? (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-gold-500",
+                  isScrolled ? "text-white" : "text-white",
+                )}
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <button
+                key={item.name}
+                onClick={(e) => handleNavigationClick(e, item.href, item.name)}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-gold-500 cursor-pointer",
+                  isScrolled ? "text-white" : "text-white",
+                )}
+              >
+                {item.name}
+              </button>
+            )
+          })}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Dialog>
@@ -265,16 +305,30 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-white/20">
                 <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/10"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {navigation.map((item) => {
+                    const isClickable = item.name === "Home" || item.name === "Contact"
+                    return isClickable ? (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/10"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <button
+                        key={item.name}
+                        onClick={(e) => {
+                          handleNavigationClick(e, item.href, item.name)
+                          setMobileMenuOpen(false)
+                        }}
+                        className="-mx-3 block w-full text-left rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/10 cursor-pointer"
+                      >
+                        {item.name}
+                      </button>
+                    )
+                  })}
                 </div>
                 <div className="py-6">
                   <Dialog>
@@ -404,6 +458,34 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Coming Soon Modal */}
+      <Dialog open={comingSoonOpen} onOpenChange={setComingSoonOpen}>
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700 border-gold-500/50 text-white">
+          <DialogHeader className="text-center">
+            <div className="mx-auto mb-4 w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center">
+              <span className="text-4xl">🍽️</span>
+            </div>
+            <DialogTitle className="text-2xl md:text-3xl font-serif text-gold-400 mb-2">
+              Coming Soon!
+            </DialogTitle>
+            <DialogDescription className="text-gray-200 text-base leading-relaxed">
+              It's under process, soon you can use something like that interesting on our food theme!
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-6 text-center">
+            <p className="text-gray-300 text-sm mb-4">
+              We're working hard to bring you an amazing experience with our delicious food offerings.
+            </p>
+            <Button
+              onClick={() => setComingSoonOpen(false)}
+              className="bg-gold-500 hover:bg-gold-600 text-white w-full"
+            >
+              Got it!
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </header>
   )
 }

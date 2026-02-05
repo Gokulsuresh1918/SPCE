@@ -41,11 +41,23 @@ const HeroSection = () => {
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you can add logic to handle the enquiry
-    console.log("Enquiry from:", name, "Phone:", phoneNumber)
+    
+    // Validate that name and phone number are provided
+    if (!name || !phoneNumber) {
+      alert("Please enter both your name and phone number")
+      return
+    }
+    
+    // Create WhatsApp message
+    const message = `Hello! Please call this person:\n\nName: ${name}\nPhone: ${phoneNumber}\n\nThey requested a callback for event management services.`
+    const whatsappUrl = `https://wa.me/917902371571?text=${encodeURIComponent(message)}`
+    
+    // Open WhatsApp with the message
+    window.open(whatsappUrl, '_blank')
+    
+    // Reset form
     setPhoneNumber("")
     setName("")
-    // You can add a toast notification here
   }
 
   const handleWhatsAppClick = () => {
@@ -83,40 +95,44 @@ const HeroSection = () => {
       <FloatingElements />
       
       {/* Background Image with 3D Parallax */}
-      <motion.div 
-        className="absolute inset-0 z-0 w-full h-full"
-        style={{
-          x: useTransform(useSpring(mousePosition.x), [0, 1], [-20, 20]),
-          y: useTransform(useSpring(mousePosition.y), [0, 1], [-20, 20]),
-        }}
-      >
-        {!imageError ? (
-          <div className="absolute inset-0 w-full h-full">
-            <Image 
-              src="/luxury-indian-wedding.png" 
-              alt="Luxury Wedding Setting" 
-              fill 
-              priority 
-              className="hero-image w-full h-full object-cover object-center"
-              sizes="100vw"
-              quality={95}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXXGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              onError={handleImageError}
-              onLoad={() => setIsLoaded(true)}
-            />
-          </div>
-        ) : (
-          <div className="hero-fallback w-full h-full flex items-center justify-center">
-            <div className="text-center text-white/80">
-              <div className="text-6xl mb-4">💒</div>
-              <h2 className="text-2xl font-serif mb-2">Luxury Wedding Events</h2>
-              <p className="text-lg">Creating magical moments since 1993</p>
+      <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+        <motion.div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            x: useTransform(useSpring(mousePosition.x), [0, 1], [-15, 15]),
+            y: useTransform(useSpring(mousePosition.y), [0, 1], [-15, 15]),
+          }}
+        >
+          {!imageError ? (
+            <div className="absolute inset-0 w-full h-full">
+              <div className="absolute inset-0 w-[110%] h-[110%] -left-[5%] -top-[5%]">
+                <Image 
+                  src="/luxury-indian-wedding.png" 
+                  alt="Luxury Wedding Setting" 
+                  fill 
+                  priority 
+                  className="hero-image w-full h-full object-cover object-center"
+                  sizes="100vw"
+                  quality={95}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXXGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  onError={handleImageError}
+                  onLoad={() => setIsLoaded(true)}
+                />
+              </div>
             </div>
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
-      </motion.div>
+          ) : (
+            <div className="hero-fallback w-full h-full flex items-center justify-center">
+              <div className="text-center text-white/80">
+                <div className="text-6xl mb-4">💒</div>
+                <h2 className="text-2xl font-serif mb-2">Luxury Wedding Events</h2>
+                <p className="text-lg">Creating magical moments since 1993</p>
+              </div>
+            </div>
+          )}
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50 pointer-events-none" />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 text-center">
@@ -313,9 +329,9 @@ const HeroSection = () => {
             asChild
             size="lg"
             variant="outline"
-            className="border-2 border-white text-white hover:bg-white/10 min-w-[200px] h-14 text-lg group"
+            className="!bg-transparent border-2 border-white/80 text-white hover:!bg-white/10 hover:border-white min-w-[200px] h-14 text-lg group backdrop-blur-sm"
           >
-            <Link href="/services" className="flex items-center text-black">
+            <Link href="/services" className="flex items-center text-white">
               View Our Services
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

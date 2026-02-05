@@ -212,4 +212,30 @@
   .hero-fallback {
     background: linear-gradient(135deg, #8B4513 0%, #D4AF37 50%, #8B4513 100%);
   }
+
+  /* Glassmorphism Utilities */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+
+  .glass-card {
+    @apply glass rounded-xl transition-all duration-300 hover:bg-white/20 hover:scale-[1.02];
+  }
+
+  /* Neon Glows */
+  .neon-text-gold {
+    text-shadow: 0 0 10px rgba(218, 165, 32, 0.5), 0 0 20px rgba(218, 165, 32, 0.3);
+  }
+
+  .neon-border-gold {
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.5), inset 0 0 10px rgba(218, 165, 32, 0.5);
+  }
+
+  .neon-box-gold {
+    box-shadow: 0 0 15px rgba(218, 165, 32, 0.4);
+  }
 }
