@@ -704,10 +704,12 @@ function GalleryForm({ formData, setFormData, onSubmit }) {
         <Label className="text-white">Description</Label>
         <Textarea value={formData.description || ""} onChange={(e) => setFormData({...formData, description: e.target.value})} className="bg-white/10 border-white/20 text-white" />
       </div>
-      <div>
-        <Label className="text-white">Image URL</Label>
-        <Input value={formData.imageUrl || ""} onChange={(e) => setFormData({...formData, imageUrl: e.target.value})} className="bg-white/10 border-white/20 text-white" />
-      </div>
+      <ImageUpload
+        folderType="gallery"
+        onUploadComplete={(url) => setFormData({...formData, imageUrl: url})}
+        currentImage={formData.imageUrl}
+        label="Gallery Image"
+      />
       <div>
         <Label className="text-white">Category</Label>
         <select value={formData.category || "other"} onChange={(e) => setFormData({...formData, category: e.target.value})} className="w-full px-3 py-2 bg-maroon-800 border border-white/20 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500">
@@ -740,10 +742,12 @@ function DishForm({ formData, setFormData, onSubmit }) {
         <Label className="text-white">Description</Label>
         <Textarea value={formData.description || ""} onChange={(e) => setFormData({...formData, description: e.target.value})} className="bg-white/10 border-white/20 text-white" required />
       </div>
-      <div>
-        <Label className="text-white">Image URL</Label>
-        <Input value={formData.image || ""} onChange={(e) => setFormData({...formData, image: e.target.value})} className="bg-white/10 border-white/20 text-white" />
-      </div>
+      <ImageUpload
+        folderType="dishes"
+        onUploadComplete={(url) => setFormData({...formData, image: url})}
+        currentImage={formData.image}
+        label="Dish Image"
+      />
       <div className="grid grid-cols-2 gap-4">
         <div>
           <Label className="text-white">Cooking Time</Label>

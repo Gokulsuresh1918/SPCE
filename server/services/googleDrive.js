@@ -14,7 +14,7 @@ const auth = new google.auth.GoogleAuth({
 
 const drive = google.drive({ version: 'v3', auth });
 
-// Folder mapping
+// Folder mapping - can use folder IDs or folder names
 const FOLDER_MAP = {
   team: process.env.GOOGLE_DRIVE_TEAM_FOLDER_ID || 'team-members',
   dishes: process.env.GOOGLE_DRIVE_DISHES_FOLDER_ID || 'dishes',
@@ -22,6 +22,11 @@ const FOLDER_MAP = {
   events: process.env.GOOGLE_DRIVE_EVENTS_FOLDER_ID || 'events',
   testimonials: process.env.GOOGLE_DRIVE_TESTIMONIALS_FOLDER_ID || 'testimonials',
 };
+
+// Check if value is a folder ID (alphanumeric string) or folder name
+function isFolderId(value) {
+  return /^[a-zA-Z0-9_-]+$/.test(value) && value.length > 10;
+}
 
 // Create folder if it doesn't exist
 async function getOrCreateFolder(folderName) {
@@ -55,8 +60,8 @@ async function getOrCreateFolder(folderName) {
 // Upload file to Google Drive
 async function uploadFile(filePath, fileName, folderType = 'gallery') {
   try {
-    const folderName = FOLDER_MAP[folderType] || 'gallery';
-    const folderId = await getOrCreateFolder(folderName);
+    const folderValue = FOLDER_MAP[folderType] || 'gallery';
+    const folderId = isFolderId(folderValue) ? folderValue : await getOrCreateFolder(folderValue);
 
     const fileMetadata = {
       name: fileName,
@@ -100,8 +105,8 @@ async function uploadFile(filePath, fileName, folderType = 'gallery') {
 // Upload from base64 or buffer
 async function uploadFromBuffer(buffer, fileName, folderType = 'gallery', mimeType = 'image/jpeg') {
   try {
-    const folderName = FOLDER_MAP[folderType] || 'gallery';
-    const folderId = await getOrCreateFolder(folderName);
+    const folderValue = FOLDER_MAP[folderType] || 'gallery';
+    const folderId = isFolderId(folderValue) ? folderValue : await getOrCreateFolder(folderValue);
 
     const fileMetadata = {
       name: fileName,
