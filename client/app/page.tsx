@@ -12,6 +12,7 @@ import TestimonialCard3D from "@/components/ui/testimonial-card-3d"
 import AnimatedCTA from "@/components/home/animated-cta"
 import LoadingScreen3D from "@/components/ui/loading-screen-3d"
 import KeralaSadhyaSection from "@/components/home/kerala-sadhya-section"
+import FeaturedCelebrations from "@/components/home/featured-celebrations"
 import TraditionalKeralaSection from "@/components/home/traditional-kerala-section"
 import { useState } from "react"
 
@@ -105,65 +106,7 @@ export default function Home() {
         <AnimatedStats />
 
 
-        {/* Featured Work */}
-        <section className="py-24 md:py-32">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">Featured Celebrations</h2>
-              <p className="text-gray-200 text-lg">
-                A glimpse into the magical moments we've helped create for our clients.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  image:
-                    "/placeholder.svg?height=600&width=800&query=luxury indian wedding mandap with floral decorations",
-                  title: "Anjali & Karthik",
-                  subtitle: "Traditional Wedding in Kochi",
-                },
-                {
-                  image:
-                    "/placeholder.svg?height=600&width=800&query=elegant corporate event setup with banquet arrangement",
-                  title: "Infosys Annual Gala",
-                  subtitle: "Corporate Event in Bangalore",
-                },
-                {
-                  image:
-                    "/placeholder.svg?height=600&width=800&query=beach wedding setup in kerala with traditional elements",
-                  title: "Meera & Vikram",
-                  subtitle: "Destination Wedding in Kovalam",
-                },
-              ].map((work, index) => (
-                <Card3D key={index} className="group relative overflow-hidden rounded-lg" intensity={20}>
-                  <div className="aspect-[4/3] relative">
-                    <Image
-                      src={work.image || "/placeholder.svg"}
-                      alt={work.title}
-                      fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80" />
-                  </div>
-                  <div className="absolute bottom-0 left-0 p-6 w-full">
-                    <h3 className="text-xl font-serif font-bold text-white mb-1">{work.title}</h3>
-                    <p className="text-white/80">{work.subtitle}</p>
-                  </div>
-                </Card3D>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Button asChild className="bg-gold-500 hover:bg-gold-600 text-white">
-                <Link href="/gallery">View Our Gallery</Link>
-              </Button>
-              <Button asChild variant="outline" className="border-gold-500 text-gold-500 hover:bg-gold-500/10">
-                <Link href="/menu">Explore Menu</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <FeaturedCelebrations />
 
         {/* Testimonial */}
         <section className="py-24 md:py-32">

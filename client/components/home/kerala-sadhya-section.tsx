@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
@@ -8,53 +9,31 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Leaf, Utensils, Users, Clock } from "lucide-react"
 import Link from "next/link"
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"
+
 const KeralaSadhyaSection = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const [sadhyaItems, setSadhyaItems] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const sadhyaItems = [
+  useEffect(() => {
+    fetchDishes()
+  }, [])
 
-  
-    {
-      name: "Sambar",
-      description: "Tangy lentil stew with vegetables and tamarind",
-      detailedDescription: "A tangy and spicy lentil stew made with toor dal, tamarind, and mixed vegetables. This iconic dish is flavored with sambar powder and tempered with mustard seeds and curry leaves.",
-      image: "/sambar.jpeg",
-      ingredients: ["Toor Dal", "Tamarind", "Mixed Vegetables", "Sambar Powder", "Mustard Seeds", "Curry Leaves"],
-      cookingTime: "45 mins",
-      spiceLevel: "Medium"
-    },
-   
-    {
-      name: "Aviyal",
-      description: "Mixed vegetables in coconut and yogurt gravy",
-      detailedDescription: "A creamy vegetable curry made with mixed vegetables, coconut, and yogurt. This dish showcases the perfect balance of flavors and is a highlight of Kerala sadhya.",
-      image: "/aviyal.jpeg",
-      ingredients: ["Mixed Vegetables", "Coconut", "Yogurt", "Curry Leaves", "Coconut Oil", "Green Chilies"],
-      cookingTime: "40 mins",
-      spiceLevel: "Mild"
-    },
-
-    {
-      name: "Ambalapuzha Payasam",
-      description: "Traditional sweet dessert with jaggery and coconut",
-      detailedDescription: "A traditional Kerala dessert made with rice, jaggery, and coconut milk. This sweet dish is served at the end of sadhya and is considered auspicious in Kerala culture.",
-      image: "/amblaapuzhapayasam.jpeg",
-      ingredients: ["Rice", "Jaggery", "Coconut Milk", "Cardamom", "Ghee", "Cashews"],
-      cookingTime: "35 mins",
-      spiceLevel: "Sweet"
-    },
-    {
-      name: "Pineapple Payasam",
-      description: "Traditional sweet dessert with jaggery and coconut",
-      detailedDescription: "A traditional Kerala dessert made with rice, jaggery, and coconut milk. This sweet dish is served at the end of sadhya and is considered auspicious in Kerala culture.",
-      image: "pineapple payasam.jpeg",
-      ingredients: ["Rice", "Jaggery", "Coconut Milk", "Cardamom", "Ghee", "Cashews"],
-      cookingTime: "35 mins",
-      spiceLevel: "Sweet"
-    },
- 
-  ]
+  const fetchDishes = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/dishes?limit=8`)
+      const data = await response.json()
+      if (data.success && data.data) {
+        setSadhyaItems(data.data)
+      }
+    } catch (error) {
+      console.error("Error fetching dishes:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const features = [
     {
@@ -122,71 +101,55 @@ const KeralaSadhyaSection = () => {
         </div>
 
         {/* Sadhya Items Grid */}
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
-          {sadhyaItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/20 group" intensity={15}>
-                <div className="aspect-[4/3] relative overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Hover Overlay with Details */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-maroon-900/95 via-maroon-800/95 to-maroon-700/95 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col justify-center">
-                    <div className="text-center mb-3">
-                      <h3 className="text-lg font-bold text-white mb-2">{item.name}</h3>
-                      <p className="text-gray-200 text-xs mb-3">{item.detailedDescription}</p>
-                      
-                      {/* Cooking Details */}
-                      <div className="flex justify-center gap-3 mb-3">
-                        <div className="text-center">
-                          <div className="text-gold-400 text-xs font-medium">TIME</div>
-                          <div className="text-white text-xs">{item.cookingTime}</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-gold-400 text-xs font-medium">SPICE</div>
-                          <div className="text-white text-xs">{item.spiceLevel}</div>
-                        </div>
-                      </div>
-                      
-                      {/* Ingredients */}
-                      <div className="mb-3">
-                        <div className="text-gold-400 text-xs font-medium mb-1">INGREDIENTS</div>
-                        <div className="flex flex-wrap justify-center gap-1">
-                          {item.ingredients.slice(0, 3).map((ingredient, idx) => (
-                            <span key={idx} className="bg-white/10 text-white text-xs px-1.5 py-0.5 rounded-full">
-                              {ingredient}
-                            </span>
-                          ))}
-                          {item.ingredients.length > 3 && (
-                            <span className="bg-gold-500/20 text-gold-400 text-xs px-1.5 py-0.5 rounded-full">
-                              +{item.ingredients.length - 3} more
-                            </span>
-                          )}
-                        </div>
+        {loading ? (
+          <div className="text-center text-gray-400 py-12 mb-16">
+            <p>Loading dishes...</p>
+          </div>
+        ) : sadhyaItems.length === 0 ? (
+          <div className="text-center text-gray-400 py-12 mb-16">
+            <p>No dishes available yet.</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+            {sadhyaItems.map((item, index) => (
+              <motion.div
+                key={item._id || index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/20 group" intensity={15}>
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg"
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    
+                    {/* Hover Overlay with Details */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-maroon-900/95 via-maroon-800/95 to-maroon-700/95 opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col justify-center">
+                      <div className="text-center">
+                        <h3 className="text-lg font-bold text-white mb-2">{item.name}</h3>
+                        <p className="text-gray-200 text-xs">{item.detailedDescription || item.description}</p>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                {/* Default Card Content */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-white mb-2">{item.name}</h3>
-                  <p className="text-gray-200 text-xs">{item.description}</p>
-                </div>
-              </Card3D>
-            </motion.div>
-          ))}
-        </div>
+                  
+                  {/* Default Card Content */}
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold text-white mb-2">{item.name}</h3>
+                    <p className="text-gray-200 text-xs">{item.description}</p>
+                  </div>
+                </Card3D>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* View All Dishes Button */}
         <motion.div

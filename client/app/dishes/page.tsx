@@ -1,14 +1,24 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Clock, Flame, ChefHat, Search, Filter } from "lucide-react"
 import Card3D from "@/components/ui/3d-card"
 
-const allDishes = [
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"
+
+const categoryMap: { [key: string]: string } = {
+  "main-dish": "Main Dishes",
+  "vegetable-dish": "Vegetable Dishes",
+  "pickle": "Pickles",
+  "dessert": "Desserts",
+  "snack": "Snacks",
+  "drink": "Drinks",
+  "other": "Other"
+}
   // Main Dishes
   {
     category: "Main Dishes",
@@ -150,15 +160,37 @@ export default function DishesPage() {
   const isInView = useInView(ref, { once: true })
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
+  const [dishes, setDishes] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const categories = ["All", ...allDishes.map(dish => dish.category)]
+  useEffect(() => {
+    fetchDishes()
+  }, [])
+
+  const fetchDishes = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/dishes`)
+      const data = await response.json()
+      if (data.success && data.data) {
+        setDishes(data.data)
+      }
+    } catch (error) {
+      console.error("Error fetching dishes:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Get unique categories from dishes
+  const categories = ["All", ...Array.from(new Set(dishes.map(dish => categoryMap[dish.category] || "Other")))]
   
-  const filteredDishes = allDishes.flatMap(category => 
-    category.items.filter(dish => 
-      (selectedCategory === "All" || category.category === selectedCategory) &&
+  const filteredDishes = dishes.filter(dish => {
+    const dishCategory = categoryMap[dish.category] || "Other"
+    return (
+      (selectedCategory === "All" || dishCategory === selectedCategory) &&
       dish.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-  )
+  })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700 pt-20">
@@ -225,16 +257,25 @@ export default function DishesPage() {
           </motion.div>
 
           {/* Dishes Grid */}
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {filteredDishes.map((dish, index) => (
+          {loading ? (
+            <div className="text-center text-gray-400 py-12">
+              <p>Loading dishes...</p>
+            </div>
+          ) : filteredDishes.length === 0 ? (
+            <div className="text-center text-gray-400 py-12">
+              <p>No dishes found. {dishes.length === 0 && "Add dishes from the management dashboard."}</p>
+            </div>
+          ) : (
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {filteredDishes.map((dish, index) => (
               <motion.div
-                key={index}
+                key={dish._id || index}
                 initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
                 animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
                 transition={{ 
@@ -248,52 +289,65 @@ export default function DishesPage() {
                 <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/20 group h-full" intensity={20}>
                   <div className="aspect-square relative overflow-hidden">
                     <Image
-                      src={dish.image}
+                      src={dish.image || "/placeholder.svg"}
                       alt={dish.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg"
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     
                     {/* Price Badge */}
-                    <div className="absolute top-4 right-4 bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      {dish.price}
-                    </div>
+                    {dish.price && (
+                      <div className="absolute top-4 right-4 bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        {typeof dish.price === 'number' ? `₹${dish.price}` : dish.price}
+                      </div>
+                    )}
                     
                     {/* Hover Overlay with Details */}
                     <div className="absolute inset-0 bg-gradient-to-br from-maroon-900/95 via-maroon-800/95 to-maroon-700/95 opacity-0 group-hover:opacity-100 transition-all duration-500 p-6 flex flex-col justify-center">
                       <div className="text-center mb-4">
                         <h3 className="text-xl font-bold text-white mb-2">{dish.name}</h3>
-                        <p className="text-gray-200 text-sm mb-4">{dish.detailedDescription}</p>
+                        <p className="text-gray-200 text-sm mb-4">{dish.detailedDescription || dish.description}</p>
                         
                         {/* Cooking Details */}
-                        <div className="flex justify-center gap-4 mb-4">
-                          <div className="text-center">
-                            <Clock className="h-4 w-4 text-gold-400 mx-auto mb-1" />
-                            <div className="text-white text-xs">{dish.cookingTime}</div>
-                          </div>
-                          <div className="text-center">
-                            <Flame className="h-4 w-4 text-gold-400 mx-auto mb-1" />
-                            <div className="text-white text-xs">{dish.spiceLevel}</div>
-                          </div>
-                        </div>
-                        
-                        {/* Ingredients */}
-                        <div className="mb-4">
-                          <div className="text-gold-400 text-xs font-medium mb-2">KEY INGREDIENTS</div>
-                          <div className="flex flex-wrap justify-center gap-1">
-                            {dish.ingredients.slice(0, 4).map((ingredient, idx) => (
-                              <span key={idx} className="bg-white/10 text-white text-xs px-2 py-1 rounded-full">
-                                {ingredient}
-                              </span>
-                            ))}
-                            {dish.ingredients.length > 4 && (
-                              <span className="bg-gold-500/20 text-gold-400 text-xs px-2 py-1 rounded-full">
-                                +{dish.ingredients.length - 4} more
-                              </span>
+                        {(dish.cookingTime || dish.spiceLevel) && (
+                          <div className="flex justify-center gap-4 mb-4">
+                            {dish.cookingTime && (
+                              <div className="text-center">
+                                <Clock className="h-4 w-4 text-gold-400 mx-auto mb-1" />
+                                <div className="text-white text-xs">{dish.cookingTime}</div>
+                              </div>
+                            )}
+                            {dish.spiceLevel && (
+                              <div className="text-center">
+                                <Flame className="h-4 w-4 text-gold-400 mx-auto mb-1" />
+                                <div className="text-white text-xs">{dish.spiceLevel}</div>
+                              </div>
                             )}
                           </div>
-                        </div>
+                        )}
+                        
+                        {/* Ingredients */}
+                        {dish.ingredients && dish.ingredients.length > 0 && (
+                          <div className="mb-4">
+                            <div className="text-gold-400 text-xs font-medium mb-2">KEY INGREDIENTS</div>
+                            <div className="flex flex-wrap justify-center gap-1">
+                              {dish.ingredients.slice(0, 4).map((ingredient: string, idx: number) => (
+                                <span key={idx} className="bg-white/10 text-white text-xs px-2 py-1 rounded-full">
+                                  {ingredient}
+                                </span>
+                              ))}
+                              {dish.ingredients.length > 4 && (
+                                <span className="bg-gold-500/20 text-gold-400 text-xs px-2 py-1 rounded-full">
+                                  +{dish.ingredients.length - 4} more
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -302,26 +356,37 @@ export default function DishesPage() {
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="text-xl font-semibold text-white">{dish.name}</h3>
-                      <span className="text-gold-400 font-bold">{dish.price}</span>
+                      {dish.price && (
+                        <span className="text-gold-400 font-bold">
+                          {typeof dish.price === 'number' ? `₹${dish.price}` : dish.price}
+                        </span>
+                      )}
                     </div>
                     <p className="text-gray-200 text-sm mb-4">{dish.description}</p>
                     
                     {/* Quick Info */}
-                    <div className="flex items-center justify-between text-xs text-gray-300">
-                      <div className="flex items-center">
-                        <Clock className="h-3 w-3 mr-1" />
-                        {dish.cookingTime}
+                    {(dish.cookingTime || dish.spiceLevel) && (
+                      <div className="flex items-center justify-between text-xs text-gray-300">
+                        {dish.cookingTime && (
+                          <div className="flex items-center">
+                            <Clock className="h-3 w-3 mr-1" />
+                            {dish.cookingTime}
+                          </div>
+                        )}
+                        {dish.spiceLevel && (
+                          <div className="flex items-center">
+                            <Flame className="h-3 w-3 mr-1" />
+                            {dish.spiceLevel}
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center">
-                        <Flame className="h-3 w-3 mr-1" />
-                        {dish.spiceLevel}
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </Card3D>
               </motion.div>
             ))}
           </motion.div>
+          )}
 
           {/* CTA Section */}
           <motion.div
