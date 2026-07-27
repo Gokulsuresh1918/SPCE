@@ -53,7 +53,40 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom royal theme colors
+        // Ela design system — see globals.css for the CSS custom properties.
+        ela: {
+          deep: "rgb(var(--ela-deep) / <alpha-value>)",
+          mid: "rgb(var(--ela-mid) / <alpha-value>)",
+          fresh: "rgb(var(--ela-fresh) / <alpha-value>)",
+          50: "rgb(var(--ela-50) / <alpha-value>)",
+          100: "rgb(var(--ela-100) / <alpha-value>)",
+          200: "rgb(var(--ela-200) / <alpha-value>)",
+          300: "rgb(var(--ela-300) / <alpha-value>)",
+          400: "rgb(var(--ela-400) / <alpha-value>)",
+          500: "rgb(var(--ela-500) / <alpha-value>)",
+          600: "rgb(var(--ela-600) / <alpha-value>)",
+          700: "rgb(var(--ela-700) / <alpha-value>)",
+          800: "rgb(var(--ela-800) / <alpha-value>)",
+          900: "rgb(var(--ela-900) / <alpha-value>)",
+        },
+        rice: {
+          DEFAULT: "rgb(var(--rice) / <alpha-value>)",
+          50: "rgb(var(--rice-50) / <alpha-value>)",
+          100: "rgb(var(--rice-100) / <alpha-value>)",
+          200: "rgb(var(--rice-200) / <alpha-value>)",
+          300: "rgb(var(--rice-300) / <alpha-value>)",
+          400: "rgb(var(--rice-400) / <alpha-value>)",
+          500: "rgb(var(--rice-500) / <alpha-value>)",
+          600: "rgb(var(--rice-600) / <alpha-value>)",
+          700: "rgb(var(--rice-700) / <alpha-value>)",
+          800: "rgb(var(--rice-800) / <alpha-value>)",
+          900: "rgb(var(--rice-900) / <alpha-value>)",
+        },
+        turmeric: "rgb(var(--turmeric) / <alpha-value>)",
+        kumkum: "rgb(var(--kumkum) / <alpha-value>)",
+        charcoal: "rgb(var(--charcoal) / <alpha-value>)",
+        // Legacy v0-template theme colors — still referenced by pages that
+        // haven't been rebuilt onto the Ela system yet (Phases 02-06).
         gold: {
           50: "#FFFAEB",
           100: "#FFF6D6",
@@ -97,8 +130,23 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "Cambria", "serif"],
-        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        serif: ["var(--font-fraunces)", "Georgia", "Cambria", "serif"],
+        sans: ["var(--font-general-sans)", "system-ui", "sans-serif"],
+        malayalam: ["var(--font-manjari)", "sans-serif"],
+      },
+      fontSize: {
+        xs: "var(--text-xs)",
+        sm: "var(--text-sm)",
+        base: "var(--text-base)",
+        lg: "var(--text-lg)",
+        xl: "var(--text-xl)",
+        "2xl": "var(--text-2xl)",
+        "3xl": "var(--text-3xl)",
+        "4xl": "var(--text-4xl)",
+        "5xl": "var(--text-5xl)",
+        "6xl": "var(--text-6xl)",
+        "7xl": "var(--text-7xl)",
+        display: "var(--text-display)",
       },
       keyframes: {
         "accordion-down": {

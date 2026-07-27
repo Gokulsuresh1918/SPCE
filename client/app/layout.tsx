@@ -6,8 +6,7 @@ import Footer from "@/components/layout/footer"
 import WhatsAppButton from "@/components/ui/whatsapp-button"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/ui/scroll-to-top"
-// Add the import for fonts
-import { playfair, poppins } from "./fonts"
+import { fraunces, generalSans, manjari } from "./fonts"
 
 export const metadata: Metadata = {
   title: "Sree Padmanabha - Premium Event Management & Catering Services",
@@ -21,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    // Update the html tag to include the font variables
-    <html lang="en" suppressHydrationWarning className={`${playfair.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${fraunces.variable} ${generalSans.variable} ${manjari.variable}`}
+    >
       <body>
         <ThemeProvider attribute="class" defaultTheme="light">
           <Header />

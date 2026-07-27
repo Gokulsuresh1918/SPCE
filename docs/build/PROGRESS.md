@@ -7,7 +7,7 @@ where the build stands.
 
 ## Current state
 
-**Next phase to run:** `PHASE-01-design-system.md`
+**Next phase to run:** `PHASE-02-app-shell.md`
 **Last updated:** 2026-07-27
 
 ---
@@ -17,7 +17,7 @@ where the build stands.
 | # | Phase | File | Status | Date |
 |---|---|---|---|---|
 | 00 | Triage — stop the bleeding | `PHASE-00-triage.md` | ✅ Complete | 2026-07-27 |
-| 01 | Design system & motion | `PHASE-01-design-system.md` | ⬜ Not started | |
+| 01 | Design system & motion | `PHASE-01-design-system.md` | ✅ Complete | 2026-07-27 |
 | 02 | App shell | `PHASE-02-app-shell.md` | ⬜ Not started | |
 | 03 | Homepage | `PHASE-03-homepage.md` | ⬜ Not started | |
 | 04 | Interactive sadya leaf | `PHASE-04-sadhya-leaf.md` | ⬜ Not started | |
@@ -71,6 +71,47 @@ for cleanup in a later phase rather than fixed in place. The pre-existing `/priv
 admin dashboard and Express/MongoDB backend in `/server` predate this phase plan, which
 assumes both arrive in Phases 07–08 — worth reconciling before those phases start.
 Build passes with no errors.
+
+### Phase 01 — 2026-07-27
+Built the Ela design system as a foundation layer, additive to the existing v0
+maroon/gold styling rather than replacing it in place — CLAUDE.md says later phases
+(02–06) migrate pages over, so ripping out `gold-500`/`maroon-900` usage now would have
+been out of scope and broken every existing page. What did change site-wide: fonts
+(Fraunces/General Sans/Manjari replaced Playfair/Poppins via the `font-serif`/`font-sans`
+Tailwind keys) and the fluid type scale (`text-xs` through `text-7xl` are now clamp()'d
+between 360px and 1920px, with min bounds matched to the old static sizes so nothing
+should visually jump).
+
+New: `ela`/`rice`/`turmeric`/`kumkum`/`charcoal` color tokens as CSS custom properties
+(RGB triplets, `rgb(var(--x) / <alpha-value>)` pattern for opacity-modifier support) —
+the 7 named tokens are the locked spec values, the 50–900 ela/rice ramps are generated
+tint/shade interpolations and worth a design pass rather than treating as final.
+General Sans isn't on Google Fonts, so it's self-hosted from Fontshare
+(`app/fonts/general-sans/*.woff2`) rather than pulled from their CDN at runtime — matters
+for the 4G non-negotiable. Motion primitives (`lib/motion.ts`): fadeUp, staggerContainer,
+revealMask, scaleIn, drawPath, useCounterUp, all gated through a `useReducedMotion` hook,
+plus a global CSS reduced-motion fallback for anything not yet using it. gsap+ScrollTrigger
+registration helper in `lib/gsap.ts`. Lenis smooth-scroll hook built in `lib/lenis.ts` but
+**not mounted anywhere** — wiring it into the root layout is an app-shell decision
+(scroll-lock, fixed header interaction) that belongs to Phase 02, not this one.
+
+New Ela button/card/section/eyebrow/split-text components live in `components/ela/`,
+separate from the legacy `components/ui/button.tsx` etc. — kept both instead of editing
+the existing shadcn Button, since its variant names (`outline`, `default`, ...) are
+referenced across every existing page and swapping the variant set to
+primary/secondary/ghost/leaf would have broken the whole build.
+
+Caught in browser testing, not just the build: the first version of the `secondary` and
+`ghost` button variants used `text-ela-deep`, which is invisible against an `ela-deep`
+dark section — dark-on-dark. Fixed to `turmeric` (secondary) and `text-inherit`
+(ghost) so both read correctly on light and dark sections without a tone prop.
+
+Not verified: DoD asks for 360px overflow testing, but `resize_window` didn't actually
+shrink the render viewport in this environment (`window.innerWidth` stayed at 1536
+after resizing to 360) — confirmed via `document.documentElement.scrollWidth` that
+there's no overflow at the current viewport, and the clamp() min-bounds were chosen to
+match the old static sizes, but this needs a real phone check per CLAUDE.md's own
+instruction, not just this session's word for it.
 
 <!-- Example format:
 

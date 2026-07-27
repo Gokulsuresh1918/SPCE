@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" preserveAspectRatio="none" role="presentation" aria-hidden="true">
+  <!--
+    Banana-leaf vein motif for section dividers. Ships at a visible stroke
+    opacity so it reads in isolation (e.g. in /styleguide); at a real section
+    divider, wrap it and apply opacity-[0.03] (3% max, per CLAUDE.md) rather
+    than editing the strokes below.
+  -->
+  <path d="M0,100 C100,60 300,140 400,100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.6" />
+  <path d="M40,100 C55,85 65,75 78,58" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M40,100 C55,115 65,125 78,142" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M100,90 C112,75 120,66 130,52" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M100,90 C112,102 120,110 128,122" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M160,80 C170,66 178,58 188,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M160,80 C170,92 178,100 186,110" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M220,88 C230,74 238,66 248,54" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M220,88 C230,100 238,108 246,118" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M280,96 C290,82 298,74 308,62" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M280,96 C290,108 298,116 306,126" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M340,100 C348,90 354,84 362,74" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  <path d="M340,100 C348,110 354,116 362,126" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+</svg>

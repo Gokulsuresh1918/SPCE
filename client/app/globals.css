@@ -4,6 +4,55 @@
 
 @layer base {
   :root {
+    /* Ela design system — "the banana leaf". RGB triplets (not hex) so Tailwind's
+       rgb(var(--x) / <alpha-value>) pattern can apply opacity modifiers, e.g. bg-ela-deep/50.
+       The seven named tokens below are the locked values from CLAUDE.md. The 50-900
+       ela/rice scales are generated tint/shade ramps anchored on ela-mid and rice —
+       treat them as a reviewable starting point, not locked. */
+    --ela-deep: 20 52 43; /* #14342B — dark sections, primary surface */
+    --ela-mid: 47 93 80; /* #2F5D50 — cards on dark, borders */
+    --ela-fresh: 106 153 78; /* #6A994E — accents, success states */
+    --rice: 251 247 236; /* #FBF7EC — light sections */
+    --turmeric: 217 165 33; /* #D9A521 — highlights, active states */
+    --kumkum: 160 44 44; /* #A02C2C — primary CTAs only */
+    --charcoal: 25 26 23; /* #191A17 — body text on light */
+
+    --ela-50: 245 247 246;
+    --ela-100: 230 236 234;
+    --ela-200: 201 213 210;
+    --ela-300: 168 187 182;
+    --ela-400: 114 145 136;
+    --ela-500: 47 93 80; /* = ela-mid */
+    --ela-600: 39 76 66;
+    --ela-700: 31 60 52;
+    --ela-800: 20 52 43; /* = ela-deep */
+    --ela-900: 15 39 32;
+
+    --rice-50: 253 250 244;
+    --rice-100: 251 247 236; /* = rice */
+    --rice-200: 238 235 224;
+    --rice-300: 223 220 210;
+    --rice-400: 201 198 189;
+    --rice-500: 166 163 156;
+    --rice-600: 131 128 123;
+    --rice-700: 95 94 90;
+    --rice-800: 58 57 54;
+    --rice-900: 25 25 24;
+
+    /* Fluid type scale, clamp()'d between a 360px and 1920px viewport. */
+    --text-xs: clamp(0.75rem, 0.735rem + 0.06vw, 0.8125rem);
+    --text-sm: clamp(0.875rem, 0.846rem + 0.13vw, 1rem);
+    --text-base: clamp(1rem, 0.971rem + 0.13vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1.096rem + 0.13vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.192rem + 0.26vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.413rem + 0.38vw, 1.875rem);
+    --text-3xl: clamp(1.75rem, 1.577rem + 0.77vw, 2.5rem);
+    --text-4xl: clamp(2.125rem, 1.808rem + 1.41vw, 3.5rem);
+    --text-5xl: clamp(2.5rem, 2.038rem + 2.05vw, 4.5rem);
+    --text-6xl: clamp(3rem, 2.308rem + 3.08vw, 6rem);
+    --text-7xl: clamp(3.5rem, 2.692rem + 3.59vw, 7rem);
+    --text-display: clamp(2.75rem, 1.539rem + 5.38vw, 8rem);
+
     /* Base colors */
     --background: 47 33% 98%;
     --foreground: 20 14.3% 4.1%;
@@ -67,6 +116,31 @@
   h5,
   h6 {
     @apply font-serif;
+  }
+
+  /* Belt-and-braces reduced-motion fallback for any animation that isn't
+     already gated through the useReducedMotion hook in lib/motion.ts. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Exercises Fraunces' opsz (optical size) and SOFT axes — use on large
+     display headings so the typeface gets sharper/more contrasted at size. */
+  .font-display-opsz {
+    font-variation-settings: "opsz" 144, "SOFT" 0;
+  }
+
+  .font-malayalam {
+    font-family: var(--font-manjari), sans-serif;
   }
 }
 
