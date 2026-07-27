@@ -10,22 +10,13 @@ import ParallaxSection from "@/components/ui/parallax-section"
 import AnimatedStats from "@/components/home/animated-stats"
 import TestimonialCard3D from "@/components/ui/testimonial-card-3d"
 import AnimatedCTA from "@/components/home/animated-cta"
-import LoadingScreen3D from "@/components/ui/loading-screen-3d"
 import KeralaSadhyaSection from "@/components/home/kerala-sadhya-section"
 import FeaturedCelebrations from "@/components/home/featured-celebrations"
 import TraditionalKeralaSection from "@/components/home/traditional-kerala-section"
-import { useState } from "react"
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false)
-  }
-
   return (
     <>
-      {isLoading && <LoadingScreen3D onComplete={handleLoadingComplete} />}
       <div className="overflow-hidden bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700 min-h-screen">
         {/* Animated Background */}
         <AnimatedBackground />
@@ -135,12 +126,6 @@ export default function Home() {
 
         {/* Animated CTA */}
         <AnimatedCTA />
-
-        <div className="fixed bottom-8 right-8 z-50">
-          <Button asChild className="bg-gold-500 hover:bg-gold-600 text-white shadow-lg hover:shadow-xl transition-all scale-110 animate-bounce">
-            <Link href="/booking">Book Now</Link>
-          </Button>
-        </div>
       </div>
     </>
   )

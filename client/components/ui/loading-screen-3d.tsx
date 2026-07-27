@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import Image from "next/image"
 
 interface LoadingScreen3DProps {
   onComplete: () => void
@@ -79,10 +80,14 @@ const LoadingScreen3D = ({ onComplete }: LoadingScreen3DProps) => {
               transition={{ duration: 1, type: "spring", stiffness: 100 }}
               className="mb-8"
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-white font-serif mb-2">
-                Sree Padmanabha
-              </h1>
-              <p className="text-xl text-gold-300">Kerala Sadhya Specialists</p>
+              <Image
+                src="/brand/logo.png"
+                alt="Sree Padmanabha"
+                width={640}
+                height={200}
+                priority
+                className="mx-auto h-auto w-[min(90vw,28rem)] rounded-sm object-contain"
+              />
             </motion.div>
 
             {/* 3D Loading Bar */}
