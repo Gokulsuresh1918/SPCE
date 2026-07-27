@@ -25,7 +25,7 @@ const CallToAction = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/placeholder.svg?height=1080&width=1920&query=luxury venue decoration with flowers and lights in gold theme"
+          src="/branded-placeholder.svg?height=1080&width=1920&query=luxury venue decoration with flowers and lights in gold theme"
           alt="Luxury Venue Setting"
           fill
           className="object-cover"

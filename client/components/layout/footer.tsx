@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { PhoneCall, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Youtube } from "lucide-react"
+import { PhoneCall, Mail, MapPin, Clock } from "lucide-react"
 
 const Footer = () => {
   return (
@@ -12,24 +12,6 @@ const Footer = () => {
               30 years of creating memorable celebrations across South India. We pride ourselves in providing the
               highest quality catering and event management services.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-gold-500 transition">
-                <Facebook size={20} />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gold-500 transition">
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gold-500 transition">
-                <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gold-500 transition">
-                <Youtube size={20} />
-                <span className="sr-only">YouTube</span>
-              </a>
-            </div>
           </div>
 
           <div>
@@ -120,9 +102,24 @@ const Footer = () => {
               <li className="flex items-start">
                 <PhoneCall className="h-5 w-5 text-gold-500 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">7902371571</p>
-                  <p className="text-gray-300">9746235003</p>
-                  <p className="text-gray-300">9567431555</p>
+                  <p className="text-gray-300">
+                    <a href="tel:+917902371571" className="hover:text-gold-300 transition">
+                      7902371571
+                    </a>{" "}
+                    <span className="text-gray-500">(Bookings)</span>
+                  </p>
+                  <p className="text-gray-300">
+                    <a href="tel:+919746235003" className="hover:text-gold-300 transition">
+                      9746235003
+                    </a>{" "}
+                    <span className="text-gray-500">(Sadhya Enquiry)</span>
+                  </p>
+                  <p className="text-gray-300">
+                    <a href="tel:+919567431555" className="hover:text-gold-300 transition">
+                      9567431555
+                    </a>{" "}
+                    <span className="text-gray-500">(Office)</span>
+                  </p>
                 </div>
               </li>
               <li className="flex items-start">

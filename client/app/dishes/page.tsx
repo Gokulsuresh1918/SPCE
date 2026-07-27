@@ -80,8 +80,8 @@ export default function DishesPage() {
               Our Complete Menu
             </h1>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Explore our authentic Kerala sadhya with 25+ traditional dishes, each prepared with 
-              age-old recipes and the finest ingredients.
+              Explore our authentic Kerala sadhya — 26-dish, 36-dish and 64-dish (Valiya Sadya) menus,
+              each prepared with age-old recipes and the finest ingredients.
             </p>
           </motion.div>
 
@@ -154,12 +154,12 @@ export default function DishesPage() {
                 <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/20 group h-full" intensity={20}>
                   <div className="aspect-square relative overflow-hidden">
                     <Image
-                      src={dish.image || "/placeholder.svg"}
+                      src={dish.image || "/branded-placeholder.svg"}
                       alt={dish.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                       onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg"
+                        e.currentTarget.src = "/branded-placeholder.svg"
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

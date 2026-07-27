@@ -74,12 +74,12 @@ const FeaturedCelebrations = () => {
             <Card3D key={item._id || index} className="group relative overflow-hidden rounded-lg" intensity={20}>
               <div className="aspect-[4/3] relative">
                 <Image
-                  src={item.imageUrl || "/placeholder.svg"}
+                  src={item.imageUrl || "/branded-placeholder.svg"}
                   alt={item.title || "Celebration"}
                   fill
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
-                    e.currentTarget.src = "/placeholder.svg"
+                    e.currentTarget.src = "/branded-placeholder.svg"
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80" />

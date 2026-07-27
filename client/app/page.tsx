@@ -77,7 +77,7 @@ export default function Home() {
                 <Card3D className="relative">
                   <div className="aspect-[4/5] relative rounded-lg overflow-hidden shadow-xl">
                     <Image
-                      src="/placeholder.svg?height=800&width=600&query=professional%20event%20management%20kerala%20sadhya%20setup"
+                      src="/branded-placeholder.svg?height=800&width=600&query=professional%20event%20management%20kerala%20sadhya%20setup"
                       alt="Professional Event Management & Kerala Sadhya Services"
                       fill
                       className="object-cover object-center"
@@ -120,7 +120,7 @@ export default function Home() {
                 quote="Sree Padmanabha transformed our dream wedding into reality. Their attention to detail, from the flower arrangements to the menu, was impeccable. They handled everything so we could focus on enjoying our special day. Our guests are still talking about how perfect everything was!"
                 author="Anjali & Karthik"
                 role="Wedding in Kochi, December 2022"
-                image="/placeholder.svg?height=400&width=400&query=happy indian wedding couple portrait"
+                image="/branded-placeholder.svg?height=400&width=400&query=happy indian wedding couple portrait"
                 rating={5}
               />
             </div>

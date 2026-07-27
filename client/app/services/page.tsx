@@ -17,7 +17,7 @@ const services = [
     title: "Wedding Planning",
     description:
       "Comprehensive wedding planning services from conception to execution, ensuring every detail is perfect.",
-    image: "/placeholder.svg?height=600&width=800&query=luxury indian wedding mandap with floral decorations",
+    image: "/branded-placeholder.svg?height=600&width=800&query=luxury indian wedding mandap with floral decorations",
     features: [
       "Personalized wedding concept development",
       "Venue selection and management",
@@ -27,7 +27,7 @@ const services = [
       "Day-of coordination and timeline planning",
       "Budget management and tracking",
     ],
-    pricing: "Starting from ₹3,50,000",
+    pricing: "Starting from ₹3,50,000 — full wedding event management",
     icon: "💒",
     color: "from-pink-500 to-rose-500",
     animationType: "floating-hearts"
@@ -37,7 +37,7 @@ const services = [
     title: "Catering Services",
     description:
       "Exquisite multi-cuisine catering with a focus on traditional South Indian and international delicacies.",
-    image: "/placeholder.svg?height=600&width=800&query=elegant indian food catering display with traditional dishes",
+    image: "/branded-placeholder.svg?height=600&width=800&query=elegant indian food catering display with traditional dishes",
     features: [
       "Customized menu planning and tasting sessions",
       "Specialized chefs for regional cuisines",
@@ -47,7 +47,7 @@ const services = [
       "Professional service staff and floor management",
       "Special dietary accommodations",
     ],
-    pricing: "Starting from ₹1,200 per plate",
+    pricing: "Starting from ₹450 per plate — sadhya-only catering",
     icon: "🍽️",
     color: "from-orange-500 to-red-500",
     animationType: "steam-rising"
@@ -57,7 +57,7 @@ const services = [
     title: "Stage & Venue Decoration",
     description: "Stunning décor solutions that transform ordinary spaces into extraordinary celebratory venues.",
     image:
-      "/placeholder.svg?height=600&width=800&query=luxury indian wedding stage decoration with flowers and lighting",
+      "/branded-placeholder.svg?height=600&width=800&query=luxury indian wedding stage decoration with flowers and lighting",
     features: [
       "Themed concept development and visualization",
       "Custom floral arrangements and installations",
@@ -76,7 +76,7 @@ const services = [
     id: "photography",
     title: "Photography & Videography",
     description: "Capturing precious moments with our team of professional photographers and cinematographers.",
-    image: "/placeholder.svg?height=600&width=800&query=wedding photographer capturing indian bride and groom portrait",
+    image: "/branded-placeholder.svg?height=600&width=800&query=wedding photographer capturing indian bride and groom portrait",
     features: [
       "Pre-event photoshoots and concept videos",
       "Candid and traditional photography coverage",
@@ -96,7 +96,7 @@ const services = [
     title: "Invitation & Return Gifts",
     description: "Custom invitations and memorable return gifts that reflect your personality and event theme.",
     image:
-      "/placeholder.svg?height=600&width=800&query=elegant indian wedding invitation cards with traditional design",
+      "/branded-placeholder.svg?height=600&width=800&query=elegant indian wedding invitation cards with traditional design",
     features: [
       "Custom invitation card design and printing",
       "Digital invitation and RSVP management",
@@ -115,7 +115,7 @@ const services = [
     id: "corporate",
     title: "Corporate & Birthday Events",
     description: "Professional management of corporate gatherings, birthdays, and milestone celebrations.",
-    image: "/placeholder.svg?height=600&width=800&query=corporate event setup with elegant banquet hall arrangement",
+    image: "/branded-placeholder.svg?height=600&width=800&query=corporate event setup with elegant banquet hall arrangement",
     features: [
       "Corporate event strategy and planning",
       "Themed birthday party planning and execution",
@@ -134,7 +134,7 @@ const services = [
     id: "destination",
     title: "Destination Weddings",
     description: "Planning and execution of spectacular destination weddings at exotic locations across South India.",
-    image: "/placeholder.svg?height=600&width=800&query=beach wedding setup in kerala with traditional elements",
+    image: "/branded-placeholder.svg?height=600&width=800&query=beach wedding setup in kerala with traditional elements",
     features: [
       "Destination scouting and selection",
       "Travel and accommodation arrangements",

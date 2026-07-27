@@ -49,7 +49,7 @@ export default function DashboardPage() {
             <div className="flex items-center space-x-3 mb-6">
               <Avatar>
                 <AvatarImage
-                  src="/placeholder.svg?height=100&width=100&query=indian businessman in formal attire"
+                  src="/branded-placeholder.svg?height=100&width=100&query=indian businessman in formal attire"
                   alt="Rajesh Kumar"
                 />
                 <AvatarFallback>RK</AvatarFallback>
@@ -103,7 +103,7 @@ export default function DashboardPage() {
                     <div className="md:flex">
                       <div className="relative h-48 md:h-auto md:w-1/3">
                         <Image
-                          src="/placeholder.svg?height=600&width=400&query=luxury indian wedding ceremony with mandap"
+                          src="/branded-placeholder.svg?height=600&width=400&query=luxury indian wedding ceremony with mandap"
                           alt="Wedding Event"
                           fill
                           className="object-cover"

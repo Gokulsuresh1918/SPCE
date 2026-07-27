@@ -207,7 +207,7 @@ const Testimonials = () => {
                                     fill
                                     className="object-cover"
                                     onError={(e) => {
-                                      e.currentTarget.src = "/placeholder.svg"
+                                      e.currentTarget.src = "/branded-placeholder.svg"
                                     }}
                                   />
                                 </div>

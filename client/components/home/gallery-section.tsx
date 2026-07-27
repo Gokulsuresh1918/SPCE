@@ -103,7 +103,7 @@ const GallerySection = () => {
                   >
                     <div className="aspect-[4/3] w-full relative">
                       <Image
-                        src={image.imageUrl || "/placeholder.svg"}
+                        src={image.imageUrl || "/branded-placeholder.svg"}
                         alt={image.title || "Gallery Image"}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"

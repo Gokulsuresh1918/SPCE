@@ -10,7 +10,7 @@ export default function AboutPage() {
       <section className="relative">
         <div className="h-96 relative">
           <Image
-            src="/placeholder.svg?height=800&width=1920&query=team of event management professionals working on decoration"
+            src="/branded-placeholder.svg?height=800&width=1920&query=team of event management professionals working on decoration"
             alt="About Sree Padmanabha"
             fill
             className="object-cover"
@@ -52,7 +52,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/placeholder.svg?height=800&width=600&query=founder of traditional indian catering company in formal attire"
+                src="/branded-placeholder.svg?height=800&width=600&query=founder of traditional indian catering company in formal attire"
                 alt="Founder"
                 fill
                 className="object-cover"
@@ -104,45 +104,45 @@ export default function AboutPage() {
                 name: "Anand Padmanabhan",
                 role: "CEO & Creative Director",
                 image:
-                  "/placeholder.svg?height=600&width=600&query=professional indian male executive in formal attire",
+                  "/branded-placeholder.svg?height=600&width=600&query=professional indian male executive in formal attire",
                 bio: "Second-generation leader who has expanded the company across South India with innovative event concepts and strategic partnerships.",
               },
               {
                 name: "Chef Lakshmi Nair",
                 role: "Head of Culinary",
-                image: "/placeholder.svg?height=600&width=600&query=professional indian female chef in white uniform",
+                image: "/branded-placeholder.svg?height=600&width=600&query=professional indian female chef in white uniform",
                 bio: "Award-winning chef with 25 years of experience in traditional and fusion cuisines, leading a team of 50 specialized chefs.",
               },
               {
                 name: "Ravi Menon",
                 role: "Operations Director",
-                image: "/placeholder.svg?height=600&width=600&query=professional indian male in business formal attire",
+                image: "/branded-placeholder.svg?height=600&width=600&query=professional indian male in business formal attire",
                 bio: "Logistics expert who ensures flawless execution of events across multiple locations simultaneously.",
               },
               {
                 name: "Meera Krishnan",
                 role: "Design & Decor Head",
                 image:
-                  "/placeholder.svg?height=600&width=600&query=professional indian female designer in creative attire",
+                  "/branded-placeholder.svg?height=600&width=600&query=professional indian female designer in creative attire",
                 bio: "Creative visionary with background in fine arts, known for unique thematic designs that blend tradition with contemporary aesthetics.",
               },
               {
                 name: "Suresh Kumar",
                 role: "Client Relations Manager",
-                image: "/placeholder.svg?height=600&width=600&query=professional indian male in business casual",
+                image: "/branded-placeholder.svg?height=600&width=600&query=professional indian male in business casual",
                 bio: "Dedicated to providing personalized service, ensuring every client's vision is understood and brought to life.",
               },
               {
                 name: "Priya Varma",
                 role: "Digital Experience Director",
-                image: "/placeholder.svg?height=600&width=600&query=professional indian female tech executive",
+                image: "/branded-placeholder.svg?height=600&width=600&query=professional indian female tech executive",
                 bio: "Tech innovator integrating digital solutions into event management, enhancing client experience through cutting-edge technologies.",
               },
             ].map((member, index) => (
               <Card key={index} className="border-none shadow-lg overflow-hidden group">
                 <div className="relative h-72">
                   <Image
-                    src={member.image || "/placeholder.svg"}
+                    src={member.image || "/branded-placeholder.svg"}
                     alt={member.name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"

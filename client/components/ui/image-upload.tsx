@@ -141,7 +141,7 @@ export function ImageUpload({ folderType, onUploadComplete, currentImage, label 
             alt="Preview"
             className="w-full h-full object-cover"
             onError={(e) => {
-              e.currentTarget.src = "/placeholder.svg"
+              e.currentTarget.src = "/branded-placeholder.svg"
             }}
           />
         </div>
@@ -158,7 +158,7 @@ export function ImageUpload({ folderType, onUploadComplete, currentImage, label 
             alt="Current"
             className="w-full h-full object-cover"
             onError={(e) => {
-              e.currentTarget.src = "/placeholder.svg"
+              e.currentTarget.src = "/branded-placeholder.svg"
             }}
           />
         </div>

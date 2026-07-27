@@ -497,7 +497,7 @@ export default function ManagementDashboard() {
                   <CardContent className="p-4">
                     {member.photo && (
                       <div className="relative w-full h-48 mb-4 rounded overflow-hidden">
-                        <img src={member.photo} alt={member.name} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = "/placeholder.svg" }} />
+                        <img src={member.photo} alt={member.name} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = "/branded-placeholder.svg" }} />
                       </div>
                     )}
                     <div className="flex items-start justify-between mb-2">
@@ -642,7 +642,7 @@ export default function ManagementDashboard() {
                                 alt={`Photo ${idx + 1}`}
                                 className="w-full h-24 object-cover rounded"
                                 onError={(e) => {
-                                  e.currentTarget.src = "/placeholder.svg"
+                                  e.currentTarget.src = "/branded-placeholder.svg"
                                 }}
                               />
                             ))}

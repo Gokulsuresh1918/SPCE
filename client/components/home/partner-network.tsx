@@ -10,49 +10,49 @@ const partners = [
     id: 1,
     name: "Taj Hotels",
     category: "Venues",
-    logo: "/placeholder.svg?height=200&width=200&query=luxury hotel logo gold and white",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=luxury hotel logo gold and white",
   },
   {
     id: 2,
     name: "Malabar Gold",
     category: "Jewellers",
-    logo: "/placeholder.svg?height=200&width=200&query=luxury jewelry brand logo gold",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=luxury jewelry brand logo gold",
   },
   {
     id: 3,
     name: "WeddingWire",
     category: "Planning",
-    logo: "/placeholder.svg?height=200&width=200&query=wedding planner logo minimalist",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=wedding planner logo minimalist",
   },
   {
     id: 4,
     name: "Royal Orchid",
     category: "Florists",
-    logo: "/placeholder.svg?height=200&width=200&query=elegant floral shop logo",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=elegant floral shop logo",
   },
   {
     id: 5,
     name: "Divine Moments",
     category: "Photography",
-    logo: "/placeholder.svg?height=200&width=200&query=photography studio logo camera",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=photography studio logo camera",
   },
   {
     id: 6,
     name: "Spice Route",
     category: "Catering",
-    logo: "/placeholder.svg?height=200&width=200&query=spice catering logo",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=spice catering logo",
   },
   {
     id: 7,
     name: "Seasons Sound",
     category: "Entertainment",
-    logo: "/placeholder.svg?height=200&width=200&query=music and entertainment logo with notes",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=music and entertainment logo with notes",
   },
   {
     id: 8,
     name: "Royal Rides",
     category: "Transportation",
-    logo: "/placeholder.svg?height=200&width=200&query=luxury car service logo minimal",
+    logo: "/branded-placeholder.svg?height=200&width=200&query=luxury car service logo minimal",
   },
 ]
 
@@ -97,7 +97,7 @@ const PartnerNetwork = () => {
           >
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow w-full flex flex-col items-center justify-center aspect-square">
               <div className="relative w-20 h-20">
-                <Image src={partner.logo || "/placeholder.svg"} alt={partner.name} fill className="object-contain" />
+                <Image src={partner.logo || "/branded-placeholder.svg"} alt={partner.name} fill className="object-contain" />
               </div>
               <h3 className="mt-4 font-serif font-semibold text-center">{partner.name}</h3>
               <p className="text-sm text-gray-500 text-center">{partner.category}</p>

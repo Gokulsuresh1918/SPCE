@@ -13,9 +13,6 @@ export const metadata: Metadata = {
   title: "Sree Padmanabha - Premium Event Management & Catering Services",
   description:
     "30 Years of Crafting Memories Through Celebrations. Premium catering and event management services for weddings, corporate events, birthdays, and all celebrations across South India.",
-  keywords:
-    "event management, catering services, wedding planning, corporate events, south indian catering, premium events, kerala catering",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({

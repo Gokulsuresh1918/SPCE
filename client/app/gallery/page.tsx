@@ -107,7 +107,7 @@ export default function GalleryPage() {
                                     <GlassCard className="p-2 h-full cursor-pointer group" onClick={() => setSelectedImage(item.imageUrl)}>
                                         <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                                             <Image
-                                                src={item.imageUrl || "/placeholder.svg"}
+                                                src={item.imageUrl || "/branded-placeholder.svg"}
                                                 alt={item.title || "Gallery Image"}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-110"

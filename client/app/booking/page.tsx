@@ -23,7 +23,7 @@ const eventTypes = [
 ]
 
 const services = [
-    { id: "catering", label: "Catering", price: 500 }, // per person
+    { id: "catering", label: "Sadhya Catering", price: 450 }, // per plate
     { id: "decor", label: "Decoration", price: 20000 },
     { id: "photography", label: "Photography", price: 15000 },
     { id: "entertainment", label: "Entertainment", price: 10000 },
@@ -73,6 +73,11 @@ export default function BookingPage() {
                         Book Your Event
                     </h1>
                     <p className="text-gray-200">Let's plan your perfect celebration together.</p>
+                    <p className="text-gray-400 text-sm mt-2 max-w-xl mx-auto">
+                        This calculator estimates add-on event services. For full wedding event
+                        management (venue, décor, planning), packages start from ₹3,50,000 — see Services.
+                        Sadhya-only catering starts from ₹450/plate.
+                    </p>
                 </div>
 
                 <GlassCard className="p-8">
@@ -121,7 +126,11 @@ export default function BookingPage() {
                                                         className="flex flex-col items-center justify-between rounded-md border-2 border-white/10 bg-white/5 p-4 hover:bg-white/10 hover:text-white peer-data-[state=checked]:border-gold-500 peer-data-[state=checked]:text-gold-500 cursor-pointer transition-all"
                                                     >
                                                         <span className="font-semibold">{type.label}</span>
-                                                        <span className="text-xs text-gray-400 mt-1">Starts at ₹{type.basePrice.toLocaleString()}</span>
+                                                        <span className="text-xs text-gray-400 mt-1">
+                                                            {type.id === "wedding"
+                                                                ? "Add-on base ₹50,000 (full planning from ₹3,50,000)"
+                                                                : `Starts at ₹${type.basePrice.toLocaleString()}`}
+                                                        </span>
                                                     </Label>
                                                 </div>
                                             ))}
@@ -194,7 +203,7 @@ export default function BookingPage() {
                                                     <p className="text-white font-medium">{service.label}</p>
                                                     <p className="text-sm text-gray-400">
                                                         {service.id === "catering"
-                                                            ? `₹${service.price}/person`
+                                                            ? `₹${service.price}/plate`
                                                             : `₹${service.price.toLocaleString()}`}
                                                     </p>
                                                 </div>

@@ -14,7 +14,7 @@ const services = [
     title: "Wedding Planning",
     description:
       "Comprehensive wedding planning services from conception to execution, ensuring every detail is perfect.",
-    imageUrl: "/placeholder.svg?height=600&width=800&query=luxury indian wedding mandap with floral decorations",
+    imageUrl: "/branded-placeholder.svg?height=600&width=800&query=luxury indian wedding mandap with floral decorations",
   },
   {
     id: "catering",
@@ -22,40 +22,40 @@ const services = [
     description:
       "Exquisite multi-cuisine catering with a focus on traditional South Indian and international delicacies.",
     imageUrl:
-      "/placeholder.svg?height=600&width=800&query=elegant indian food catering display with traditional dishes",
+      "/branded-placeholder.svg?height=600&width=800&query=elegant indian food catering display with traditional dishes",
   },
   {
     id: "decoration",
     title: "Stage & Venue Decoration",
     description: "Stunning décor solutions that transform ordinary spaces into extraordinary celebratory venues.",
     imageUrl:
-      "/placeholder.svg?height=600&width=800&query=luxury indian wedding stage decoration with flowers and lighting",
+      "/branded-placeholder.svg?height=600&width=800&query=luxury indian wedding stage decoration with flowers and lighting",
   },
   {
     id: "photography",
     title: "Photography & Videography",
     description: "Capturing precious moments with our team of professional photographers and cinematographers.",
     imageUrl:
-      "/placeholder.svg?height=600&width=800&query=wedding photographer capturing indian bride and groom portrait",
+      "/branded-placeholder.svg?height=600&width=800&query=wedding photographer capturing indian bride and groom portrait",
   },
   {
     id: "invitation",
     title: "Invitation & Return Gifts",
     description: "Custom invitations and memorable return gifts that reflect your personality and event theme.",
     imageUrl:
-      "/placeholder.svg?height=600&width=800&query=elegant indian wedding invitation cards with traditional design",
+      "/branded-placeholder.svg?height=600&width=800&query=elegant indian wedding invitation cards with traditional design",
   },
   {
     id: "corporate",
     title: "Corporate & Birthday Events",
     description: "Professional management of corporate gatherings, birthdays, and milestone celebrations.",
-    imageUrl: "/placeholder.svg?height=600&width=800&query=corporate event setup with elegant banquet hall arrangement",
+    imageUrl: "/branded-placeholder.svg?height=600&width=800&query=corporate event setup with elegant banquet hall arrangement",
   },
   {
     id: "destination",
     title: "Destination Weddings",
     description: "Planning and execution of spectacular destination weddings at exotic locations across South India.",
-    imageUrl: "/placeholder.svg?height=600&width=800&query=beach wedding setup in kerala with traditional elements",
+    imageUrl: "/branded-placeholder.svg?height=600&width=800&query=beach wedding setup in kerala with traditional elements",
   },
 ]
 
@@ -95,7 +95,7 @@ const ServicesGrid = () => {
             <Card className="group overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="relative h-64 w-full overflow-hidden">
                 <Image
-                  src={service.imageUrl || "/placeholder.svg"}
+                  src={service.imageUrl || "/branded-placeholder.svg"}
                   alt={service.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"

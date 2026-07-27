@@ -43,7 +43,7 @@ const KeralaSadhyaSection = () => {
     },
     {
       icon: Utensils,
-      title: "150+ Traditional Dishes",
+      title: "26 to 64-Dish Menus",
       description: "Complete sadhya with all traditional accompaniments"
     },
     {
@@ -72,8 +72,8 @@ const KeralaSadhyaSection = () => {
             The Authentic Kerala Sadhya Experience
           </h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            Experience the traditional Kerala feast  with 150+ authentic dishes 
-            prepared by our expert chefs using age-old recipes passed down through generations.
+            Experience the traditional Kerala feast with our 26-dish, 36-dish and 64-dish
+            (Valiya Sadya) menus, prepared by our expert chefs using age-old recipes passed down through generations.
           </p>
         </motion.div>
 
@@ -121,12 +121,12 @@ const KeralaSadhyaSection = () => {
                 <Card3D className="bg-gradient-to-br from-maroon-900/80 via-maroon-800/80 to-maroon-700/80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/20 group" intensity={15}>
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <Image
-                      src={item.image || "/placeholder.svg"}
+                      src={item.image || "/branded-placeholder.svg"}
                       alt={item.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                       onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg"
+                        e.currentTarget.src = "/branded-placeholder.svg"
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

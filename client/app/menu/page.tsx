@@ -18,7 +18,7 @@ const menuItems = [
         category: "Main Course",
         type: "Veg",
         price: 350,
-        image: "/placeholder.svg?height=400&width=600&query=kerala sadhya feast",
+        image: "/branded-placeholder.svg?height=400&width=600&query=kerala sadhya feast",
     },
     {
         id: 2,
@@ -27,7 +27,7 @@ const menuItems = [
         category: "Main Course",
         type: "Non-Veg",
         price: 280,
-        image: "/placeholder.svg?height=400&width=600&query=chicken biryani malabar style",
+        image: "/branded-placeholder.svg?height=400&width=600&query=chicken biryani malabar style",
     },
     {
         id: 3,
@@ -36,7 +36,7 @@ const menuItems = [
         category: "Curry",
         type: "Veg",
         price: 220,
-        image: "/placeholder.svg?height=400&width=600&query=paneer butter masala",
+        image: "/branded-placeholder.svg?height=400&width=600&query=paneer butter masala",
     },
     {
         id: 4,
@@ -45,7 +45,7 @@ const menuItems = [
         category: "Curry",
         type: "Non-Veg",
         price: 320,
-        image: "/placeholder.svg?height=400&width=600&query=kerala fish molee",
+        image: "/branded-placeholder.svg?height=400&width=600&query=kerala fish molee",
     },
     {
         id: 5,
@@ -54,7 +54,7 @@ const menuItems = [
         category: "Dessert",
         type: "Veg",
         price: 120,
-        image: "/placeholder.svg?height=400&width=600&query=palada payasam",
+        image: "/branded-placeholder.svg?height=400&width=600&query=palada payasam",
     },
     {
         id: 6,
@@ -63,7 +63,7 @@ const menuItems = [
         category: "Starter",
         type: "Non-Veg",
         price: 250,
-        image: "/placeholder.svg?height=400&width=600&query=kerala beef fry",
+        image: "/branded-placeholder.svg?height=400&width=600&query=kerala beef fry",
     },
 ]
 
